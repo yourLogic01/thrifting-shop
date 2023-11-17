@@ -13,26 +13,23 @@
   </a>
   <ul class="c-sidebar-nav-dropdown-items">
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link {{ request()->routeIs('product-categories.*') ? 'c-active' : '' }}" href="/">
+      <a class="c-sidebar-nav-link {{ request()->routeIs('product-categories.*') ? 'c-active' : '' }}"
+        href="{{ route('product-categories.index') }}">
         <i class="c-sidebar-nav-icon bi bi-collection" style="line-height: 1;"></i> Categories
       </a>
     </li>
 
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link {{ request()->routeIs('products.create') ? 'c-active' : '' }}" href="/">
+      <a class="c-sidebar-nav-link {{ request()->routeIs('products.create') ? 'c-active' : '' }}"
+        href="{{ route('product.create') }}">
         <i class="c-sidebar-nav-icon bi bi-journal-plus" style="line-height: 1;"></i> Create Product
       </a>
     </li>
 
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link {{ request()->routeIs('products.index') ? 'c-active' : '' }}" href="/">
+      <a class="c-sidebar-nav-link {{ request()->routeIs('products.index') ? 'c-active' : '' }}"
+        href="{{ route('product.index') }}">
         <i class="c-sidebar-nav-icon bi bi-journals" style="line-height: 1;"></i> All Products
-      </a>
-    </li>
-
-    <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link {{ request()->routeIs('barcode.print') ? 'c-active' : '' }}" href="/">
-        <i class="c-sidebar-nav-icon bi bi-printer" style="line-height: 1;"></i> Print Barcode
       </a>
     </li>
   </ul>

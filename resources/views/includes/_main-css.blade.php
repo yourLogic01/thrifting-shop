@@ -1,12 +1,11 @@
 {{-- Dropezone CSS --}}
 <link rel="stylesheet" href="{{ asset('css/dropzone.min.css') }}">
 {{-- CoreUI CSS --}}
-@vite(['resources/sass/app.scss', 'resources/js/app.js'])
+@vite('resources/sass/app.scss')
 {{-- CDN Datatables --}}
-{{-- <link
+<link
   href="https://cdn.datatables.net/v/bs4/jszip-3.10.1/dt-1.13.5/b-2.4.1/b-html5-2.4.1/b-print-2.4.1/sl-1.7.0/datatables.min.css"
-  rel="stylesheet"> --}}
-<link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  rel="stylesheet">
 
 {{-- CDN Bootstrap Icons --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">

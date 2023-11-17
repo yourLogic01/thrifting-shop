@@ -8,10 +8,9 @@
 {{-- pdfmake fonts --}}
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 {{-- CDN Datatables --}}
-{{-- <script defer
+<script defer
   src="https://cdn.datatables.net/v/bs4/jszip-3.10.1/dt-1.13.5/b-2.4.1/b-html5-2.4.1/b-print-2.4.1/sl-1.7.0/datatables.min.js">
-</script> --}}
-<script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+</script>
 {{-- CDN perfect scrollbar --}}
 {{-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/perfect-scrollbar.js"
@@ -25,6 +24,6 @@
 
 @yield('third_party_scripts')
 
-@stack('page_scripts')
+@stack('scripts')
 
 @livewireScripts
