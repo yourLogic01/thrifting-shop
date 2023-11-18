@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\CategoriesDataTable;
 use Illuminate\Http\Request;
+use App\DataTables\OrganizeDataTable;
 
-class CategoriesController extends Controller
+class OrganizeStockController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(CategoriesDataTable $dataTable)
+    public function index(OrganizeDataTable $dataTable)
     {
-        return $dataTable->render('products.categories.index');
+        return $dataTable->render('organize-stock.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('organize-stock.create-stock');
     }
 
     /**
@@ -44,7 +44,7 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        return view('products.categories.edit-category');
+        //
     }
 
     /**

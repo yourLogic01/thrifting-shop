@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrganizeStockController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -33,4 +34,15 @@ Route::resource('products', ProductController::class)->names([
 Route::resource('product-categories', CategoriesController::class)->except('show', 'create', 'store', 'update', 'destroy')->names([
   'index' => 'product-categories.index',
   'edit' => 'product-categories.edit',
+]);
+
+// Organize Stock Route
+Route::resource('organize-stock', OrganizeStockController::class)->names([
+  'index' => 'organize-stock.index',
+  'create' => 'organize-stock.create',
+  'store' => 'organize-stock.store',
+  'show' => 'organize-stock.show',
+  'edit' => 'organize-stock.edit',
+  'update' => 'organize-stock.update',
+  'destroy' => 'organize-stock.destroy',
 ]);

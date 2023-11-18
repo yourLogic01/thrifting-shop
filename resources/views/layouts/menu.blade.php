@@ -35,22 +35,24 @@
   </ul>
 </li>
 
-{{-- Stock adjustments sidebar navigation --}}
-<li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('adjustments.*') ? 'c-show' : '' }}">
+{{-- Organize Stock sidebar navigation --}}
+<li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('organize-stock.*') ? 'c-show' : '' }}">
   <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
-    <i class="c-sidebar-nav-icon bi bi-clipboard-check" style="line-height: 1;"></i> Stock Adjustments
+    <i class="c-sidebar-nav-icon bi bi-clipboard-check" style="line-height: 1;"></i> Organize Stock
   </a>
   <ul class="c-sidebar-nav-dropdown-items">
 
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link {{ request()->routeIs('adjustments.create') ? 'c-active' : '' }}" href="/">
-        <i class="c-sidebar-nav-icon bi bi-journal-plus" style="line-height: 1;"></i> Create Adjustment
+      <a class="c-sidebar-nav-link {{ request()->routeIs('organize-stock.create') ? 'c-active' : '' }}"
+        href="{{ route('organize-stock.create') }}">
+        <i class="c-sidebar-nav-icon bi bi-journal-plus" style="line-height: 1;"></i> Set Stock
       </a>
     </li>
 
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link {{ request()->routeIs('adjustments.index') ? 'c-active' : '' }}" href="/">
-        <i class="c-sidebar-nav-icon bi bi-journals" style="line-height: 1;"></i> All Adjustments
+      <a class="c-sidebar-nav-link {{ request()->routeIs('organize-stock.index') ? 'c-active' : '' }}"
+        href="{{ route('organize-stock.index') }}">
+        <i class="c-sidebar-nav-icon bi bi-journals" style="line-height: 1;"></i> All Stock Products
       </a>
     </li>
   </ul>
