@@ -8,12 +8,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/" method="POST">
+      <form action="{{ route('home') }}" method="POST">
         @csrf
         <div class="modal-body">
           <div class="form-group">
             <label for="category_code">Category Code <span class="text-danger">*</span></label>
-            <input class="form-control" type="text" name="category_code" required value="A">
+            <input class="form-control" type="text" name="category_code" required placeholder="E.g. CA-01">
           </div>
           <div class="form-group">
             <label for="category_name">Category Name <span class="text-danger">*</span></label>

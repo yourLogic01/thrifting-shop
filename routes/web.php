@@ -1,10 +1,16 @@
 <?php
 
-use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrganizeStockController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\OrganizeStockController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +52,52 @@ Route::resource('organize-stock', OrganizeStockController::class)->names([
   'update' => 'organize-stock.update',
   'destroy' => 'organize-stock.destroy',
 ]);
+
+// Purchases Route
+Route::resource('purchases', PurchaseController::class)->names([
+  'index' => 'purchase.index',
+  'create' => 'purchase.create',
+  'store' => 'purchase.store',
+  'show' => 'purchase.show',
+  'edit' => 'purchase.edit',
+  'update' => 'purchase.update',
+  'destroy' => 'purchase.destroy',
+]);
+
+// Sales Route
+Route::resource('sales', SaleController::class)->names([
+  'index' => 'sale.index',
+  'create' => 'sale.create',
+  'store' => 'sale.store',
+  'show' => 'sale.show',
+  'edit' => 'sale.edit',
+  'update' => 'sale.update',
+  'destroy' => 'sale.destroy',
+]);
+
+// Suppliers Route
+Route::resource('suppliers', SupplierController::class)->names([
+  'index' => 'supplier.index',
+  'create' => 'supplier.create',
+  'store' => 'supplier.store',
+  'show' => 'supplier.show',
+  'edit' => 'supplier.edit',
+  'update' => 'supplier.update',
+  'destroy' => 'supplier.destroy',
+]);
+
+// Reports Route
+Route::get('/profit-loss-report', [ReportController::class, 'profitLossReport'])->name('profit-loss-report');
+
+// Users Route
+Route::resource('users', UserController::class)->except('show')->names([
+  'index' => 'user.index',
+  'create' => 'user.create',
+  'store' => 'user.store',
+  'edit' => 'user.edit',
+  'update' => 'user.update',
+  'destroy' => 'user.destroy',
+]);
+
+// User Profile Route
+Route::get('user-profile', [ProfileController::class, 'editProfile'])->name('profile.index');

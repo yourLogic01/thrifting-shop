@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\UserDataTable;
 use Illuminate\Http\Request;
-use App\DataTables\OrganizeDataTable;
 
-class OrganizeStockController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(OrganizeDataTable $dataTable)
+    public function index(UserDataTable $dataTable)
     {
-        return $dataTable->render('organize-stock.index');
+        return $dataTable->render('users.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class OrganizeStockController extends Controller
      */
     public function create()
     {
-        return view('organize-stock.create-stock');
+        return view('users.create-user');
     }
 
     /**
@@ -44,7 +44,7 @@ class OrganizeStockController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('users.edit-user');
     }
 
     /**

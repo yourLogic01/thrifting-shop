@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Category;
+use App\Models\Supplier;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class CategoriesDataTable extends DataTable
+class SupplierDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -24,9 +24,7 @@ class CategoriesDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($data) {
-                return view('products.categories.includes.actions', [
-                    'data' => $data
-                ]);
+                return view('suppliers.partials.actions', ['data' => $data]);
             })
             ->setRowId('id');
     }
@@ -45,17 +43,17 @@ class CategoriesDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('categories-table')
+            ->setTableId('supplier-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([
-                Button::make('excel')->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
-                Button::make('print')->text('<i class="bi bi-printer-fill"></i> Print'),
-                Button::make('reset')->text('<i class="bi bi-x-circle"></i> Reset'),
-                Button::make('reload')->text('<i class="bi bi-arrow-repeat"></i> Reload')
+                Button::make('reset')
+                    ->text('<i class="bi bi-x-circle"></i> Reset'),
+                Button::make('reload')
+                    ->text('<i class="bi bi-arrow-repeat"></i> Reload')
             ]);
     }
 
@@ -65,14 +63,19 @@ class CategoriesDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('Category id')->addClass('text-center'),
-            Column::make('Category Name')->addClass('text-center'),
-            Column::make('Products Count')->addClass('text-center'),
+            Column::make('supplier_name')->title('Supplier Name')
+                ->className('text-center align-middle'),
+
+            Column::make('supplier_email')->title('Supplier Email')
+                ->className('text-center align-middle'),
+
+            Column::make('supplier_phone')->title('Supplier Phone')
+                ->className('text-center align-middle'),
+
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
-                ->addClass('text-center'),
+                ->className('text-center align-middle'),
         ];
     }
 
@@ -81,6 +84,6 @@ class CategoriesDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Categories_' . date('YmdHis');
+        return 'Supplier_' . date('YmdHis');
     }
 }

@@ -3,10 +3,10 @@
   class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show {{ request()->routeIs('app.pos.*') ? 'c-sidebar-minimized' : '' }}"
   id="sidebar">
   <div class="c-sidebar-brand d-md-down-none">
-    <a href="/">
-      <img class="c-sidebar-brand-full" src="{{ asset('images/logo.png') }}" alt="Site Logo" width="70">
-      <img class="c-sidebar-brand-minimized" src="{{ asset('images/logo.png') }}" alt="Site Logo" width="40">
+    <a href="/" class="c-sidebar-brand-full header_text text-uppercase">
+      Thrifting Shop
     </a>
+    <a href="/" class="c-sidebar-brand-minimized header_minimized">Thrifting <br> Shop</a>
   </div>
   <ul class="c-sidebar-nav">
     {{-- Menu sidebar --}}
