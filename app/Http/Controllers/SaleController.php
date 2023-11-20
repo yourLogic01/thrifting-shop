@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\CategoriesDataTable;
 use Illuminate\Http\Request;
+use App\DataTables\SalesDataTable;
 
-class CategoriesController extends Controller
+class SaleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(CategoriesDataTable $dataTable)
+    public function index(SalesDataTable $dataTable)
     {
-        return $dataTable->render('products.categories.index');
+        return $dataTable->render('sales.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('sales.create-sale');
     }
 
     /**
@@ -36,7 +36,7 @@ class CategoriesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('sales.show-sale');
     }
 
     /**
@@ -44,7 +44,7 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        return view('products.categories.edit-category');
+        return view('sales.edit-sale');
     }
 
     /**

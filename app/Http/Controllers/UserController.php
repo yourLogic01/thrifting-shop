@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\CategoriesDataTable;
+use App\DataTables\UserDataTable;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(CategoriesDataTable $dataTable)
+    public function index(UserDataTable $dataTable)
     {
-        return $dataTable->render('products.categories.index');
+        return $dataTable->render('users.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create-user');
     }
 
     /**
@@ -44,7 +44,7 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        return view('products.categories.edit-category');
+        return view('users.edit-user');
     }
 
     /**

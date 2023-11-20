@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\CategoriesDataTable;
+use App\DataTables\SupplierDataTable;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(CategoriesDataTable $dataTable)
+    public function index(SupplierDataTable $dataTable)
     {
-        return $dataTable->render('products.categories.index');
+        return $dataTable->render('suppliers.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('suppliers.create-supplier');
     }
 
     /**
@@ -36,7 +36,7 @@ class CategoriesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('suppliers.show-supplier');
     }
 
     /**
@@ -44,7 +44,7 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        return view('products.categories.edit-category');
+        return view('suppliers.edit-supplier');
     }
 
     /**

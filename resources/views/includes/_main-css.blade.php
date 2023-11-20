@@ -50,4 +50,29 @@
   .select2-container--default .select2-selection--single .select2-selection__arrow b {
     margin-top: 2px;
   }
+
+  .header_text {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: .5px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #bfdbfe;
+    transition: all .2s ease-in;
+  }
+
+  .header_minimized {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: .3px;
+    font-size: 10px;
+    font-weight: 500;
+    text-align: center;
+    color: #bfdbfe;
+    transition: all .2s ease-in;
+  }
+
+  .header_text:hover,
+  .header_minimized:hover {
+    text-decoration: none;
+    color: #7dd3fc;
+  }
 </style>

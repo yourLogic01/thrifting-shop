@@ -2,7 +2,6 @@
 
 namespace App\DataTables;
 
-use App\Models\ProductCategory;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -13,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ProductCategoriesDataTable extends DataTable
+class UserDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -24,9 +23,16 @@ class ProductCategoriesDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($data) {
-                return view('products.categories.includes.actions', [
-                    'data' => $data
-                ]);
+                return view('users.includes.actions', ['data' => $data]);
+            })
+            ->addColumn('status', function ($data) {
+                if ($data->is_active == 1) {
+                    $status = '<span class="badge badge-success">Active</span>';
+                } else {
+                    $status = '<span class="badge badge-warning">Deactivated</span>';
+                }
+
+                return $status;
             })
             ->setRowId('id');
     }
@@ -34,10 +40,9 @@ class ProductCategoriesDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(User $model): void //QueryBuilder
+    public function query(User $model): QueryBuilder
     {
-        // return $model->newQuery();
-        return;
+        return $model->newQuery();
     }
 
     /**
@@ -46,17 +51,17 @@ class ProductCategoriesDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('product_categories_table')
+            ->setTableId('user-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
-            ->orderBy(5)
+            ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([
-                Button::make('excel')->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
-                Button::make('print')->text('<i class="bi bi-printer-fill"></i> Print'),
-                Button::make('reset')->text('<i class="bi bi-x-circle"></i> Reset'),
-                Button::make('reload')->text('<i class="bi bi-arrow-repeat"></i> Reload')
+                Button::make('reset')
+                    ->text('<i class="bi bi-x-circle"></i> Reset'),
+                Button::make('reload')
+                    ->text('<i class="bi bi-arrow-repeat"></i> Reload')
             ]);
     }
 
@@ -66,13 +71,19 @@ class ProductCategoriesDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('Category id')->addClass('text-center'),
-            Column::make('Category Name')->addClass('text-center'),
-            Column::make('Products Count')->addClass('text-center'),
+            Column::make('name')->title('Name')
+                ->className('text-center align-middle'),
+
+            Column::make('email')->title('Email')
+                ->className('text-center align-middle'),
+
+            Column::computed('status')->title('Status')
+                ->className('text-center align-middle'),
+
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->addClass('text-center'),
+                ->className('text-center align-middle'),
         ];
     }
 
@@ -81,6 +92,6 @@ class ProductCategoriesDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ProductCategories_' . date('YmdHis');
+        return 'User_' . date('YmdHis');
     }
 }
