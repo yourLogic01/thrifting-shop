@@ -4,13 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\OrganizeStockController;
-use App\Http\Controllers\ProfileController;
+// use App\Http\Controllers\OrganizeStockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,15 @@ use App\Http\Controllers\ProfileController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Login Controller
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+// Logout
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // Home Route
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 // Products Route
 Route::resource('products', ProductController::class)->names([
@@ -43,15 +51,15 @@ Route::resource('product-categories', CategoriesController::class)->except('show
 ]);
 
 // Organize Stock Route
-Route::resource('organize-stock', OrganizeStockController::class)->names([
-  'index' => 'organize-stock.index',
-  'create' => 'organize-stock.create',
-  'store' => 'organize-stock.store',
-  'show' => 'organize-stock.show',
-  'edit' => 'organize-stock.edit',
-  'update' => 'organize-stock.update',
-  'destroy' => 'organize-stock.destroy',
-]);
+// Route::resource('organize-stock', OrganizeStockController::class)->names([
+//   'index' => 'organize-stock.index',
+//   'create' => 'organize-stock.create',
+//   'store' => 'organize-stock.store',
+//   'show' => 'organize-stock.show',
+//   'edit' => 'organize-stock.edit',
+//   'update' => 'organize-stock.update',
+//   'destroy' => 'organize-stock.destroy',
+// ]);
 
 // Purchases Route
 Route::resource('purchases', PurchaseController::class)->names([

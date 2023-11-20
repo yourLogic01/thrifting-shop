@@ -56,7 +56,7 @@
         <img class="c-avatar rounded-circle" src="{{ asset('images/admin.png') }}" alt="Profile Image">
       </div>
       <div class="d-flex flex-column">
-        <span class="font-weight-bold">Admin</span>
+        <span class="font-weight-bold">{{ auth()->user()->name }}</span>
         <span class="font-italic">Online <i class="bi bi-circle-fill text-success" style="font-size: 11px;"></i></span>
       </div>
     </a>
@@ -69,7 +69,7 @@
         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         <i class="mfe-2  bi bi-box-arrow-left" style="font-size: 1.2rem;"></i> Logout
       </a>
-      <form id="logout-form" action="/" method="POST" class="d-none">
+      <form id="logout-form" action="logout" method="POST" class="d-none">
         @csrf
       </form>
     </div>
