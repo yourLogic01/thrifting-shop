@@ -12,7 +12,7 @@
 
 @section('content')
   <div class="container-fluid mb-4">
-    <form action="{{ route('home') }}" method="POST">
+    <form action="/users/{{ $user->id }}" method="POST">
       @csrf
       @method('patch')
       <div class="row">
@@ -20,7 +20,7 @@
           {{-- TODO:Integrate with sweetalert --}}
           {{-- @include('utils.alerts') --}}
         </div>
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="card">
             <div class="card-body">
               <div class="form-row">
@@ -38,12 +38,19 @@
                 </div>
               </div>
 
-              <div class="form-group">
-                <label for="is_active">Status <span class="text-danger">*</span></label>
-                <select class="form-control" name="is_active" id="is_active" required>
-                  <option value="1" {{ $user->is_active == 1 ? 'selected' : '' }}>Active</option>
-                  <option value="2" {{ $user->is_active == 2 ? 'selected' : '' }}>Deactive</option>
-                </select>
+              <div class="form-row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
+                    <textarea class="form-control" name="address" id="address" rows="3">{{ $user->address }}</textarea>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="phone">Phone <span class="text-danger">*</span></label>
+                    <input class="form-control" type="number" name="phone" value="{{ $user->phone }}" required>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -51,7 +58,7 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="form-group">
-                <button class="btn btn-primary">Update User <i class="bi bi-check"></i></button>
+                <button class="btn btn-primary" type="submit">Update User <i class="bi bi-check"></i></button>
               </div>
             </div>
           </div>
