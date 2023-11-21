@@ -30,7 +30,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+        if(!auth()){
+            toast("You are not authorized to perform this action", 'error');
+            return redirect()->route('user.index');
+        }
         $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users',
@@ -75,6 +78,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if(!auth()){
+            toast("You are not authorized to perform this action", 'error');
+            return redirect()->route('user.index');
+        }
         $request->validate([
             'name' => 'required|max:255',
             'email' => "required|email|unique:users,email,$user->id",
@@ -98,6 +105,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if(!auth()){
+            toast("You are not authorized to perform this action", 'error');
+            return redirect()->route('user.index');
+        }
+
         $user->delete();
 
         toast("User Deleted", 'success');
