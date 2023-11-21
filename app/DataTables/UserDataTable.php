@@ -25,15 +25,15 @@ class UserDataTable extends DataTable
             ->addColumn('action', function ($data) {
                 return view('users.includes.actions', ['data' => $data]);
             })
-            ->addColumn('status', function ($data) {
-                if ($data->is_active == 1) {
-                    $status = '<span class="badge badge-success">Active</span>';
-                } else {
-                    $status = '<span class="badge badge-warning">Deactivated</span>';
-                }
+            // ->addColumn('position', function ($data) {
+            //     if ($data->is_active == 1) {
+            //         $status = '<span class="badge badge-success">Active</span>';
+            //     } else {
+            //         $status = '<span class="badge badge-warning">Deactivated</span>';
+            //     }
 
-                return $status;
-            })
+            //     return $status;
+            // })
             ->setRowId('id');
     }
 
@@ -55,7 +55,7 @@ class UserDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
-            ->orderBy(1)
+            ->orderBy(3)
             ->selectStyleSingle()
             ->buttons([
                 Button::make('reset')
@@ -77,13 +77,15 @@ class UserDataTable extends DataTable
             Column::make('email')->title('Email')
                 ->className('text-center align-middle'),
 
-            Column::computed('status')->title('Status')
+            Column::make('position')->title('Position')
                 ->className('text-center align-middle'),
 
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
                 ->className('text-center align-middle'),
+            Column::make('created_at')
+                ->visible(false)
         ];
     }
 

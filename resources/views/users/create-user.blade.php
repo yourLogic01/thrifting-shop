@@ -12,7 +12,7 @@
 
 @section('content')
   <div class="container-fluid mb-4">
-    <form action="{{ route('home') }}" method="POST">
+    <form action="{{ route('user.store') }}" method="POST">
       @csrf
       <div class="row">
         <div class="col-lg-12">
@@ -45,30 +45,26 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="password_confirmation">Confirm Password <span class="text-danger">*</span></label>
-                    <input class="form-control" type="password" name="password_confirmation" required>
+                    <label for="phone">Phone <span class="text-danger">*</span></label>
+                    <input class="form-control" type="number" name="phone" required>
                   </div>
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="role">Role <span class="text-danger">*</span></label>
-                    <select class="form-control" name="role" id="role" required>
-                      <option value="" selected disabled>Select Role</option>
-                      <option value="admin">Admin</option>
-                      <option value="super_admin">Super Admin</option>
+                    <label for="position">Position <span class="text-danger">*</span></label>
+                    <select class="form-control" name="position" id="position" required>
+                      <option value="" selected disabled>Select Position</option>
+                      <option value="employee">Employee</option>
+                      <option value="owner">Owner</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="is_active">Status <span class="text-danger">*</span></label>
-                    <select class="form-control" name="is_active" id="is_active" required>
-                      <option value="" selected disabled>Select Status</option>
-                      <option value="1">Active</option>
-                      <option value="2">Deactive</option>
-                    </select>
+                    <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
+                    <textarea class="form-control" name="address" id="address" rows="3"></textarea>
                   </div>
                 </div>
               </div>
@@ -79,7 +75,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <button class="btn btn-primary">Create User <i class="bi bi-plus"></i></button>
+            <button type="submit" class="btn btn-primary">Create User <i class="bi bi-plus"></i></button>
           </div>
         </div>
       </div>
