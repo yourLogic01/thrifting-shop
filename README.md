@@ -10,3 +10,7 @@
 -   run `php artisan storage:link`
 -   run `php artisan serve`
 -   then visit `http://localhost:8000 or http://127.0.0.1:8000`.
+
+-   Login account.
+
+    > Email : admin@test.com | password : 12345678.
