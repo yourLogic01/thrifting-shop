@@ -45,9 +45,12 @@ Route::resource('products', ProductController::class)->names([
 ]);
 
 // Categories Route
-Route::resource('product-categories', CategoriesController::class)->except('show', 'create', 'store', 'update', 'destroy')->names([
+Route::resource('product-categories', CategoriesController::class)->except('show', 'create')->names([
   'index' => 'product-categories.index',
+  'store' => 'product-categories.store',
   'edit' => 'product-categories.edit',
+  'update' => 'product-categories.update',
+  'destroy' => 'product-categories.destroy',
 ]);
 
 // Organize Stock Route

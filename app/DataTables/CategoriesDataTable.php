@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\Categories;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
@@ -34,7 +35,7 @@ class CategoriesDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(User $model): QueryBuilder
+    public function query(Categories $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -54,8 +55,6 @@ class CategoriesDataTable extends DataTable
             ->buttons([
                 Button::make('excel')->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
                 Button::make('print')->text('<i class="bi bi-printer-fill"></i> Print'),
-                Button::make('reset')->text('<i class="bi bi-x-circle"></i> Reset'),
-                Button::make('reload')->text('<i class="bi bi-arrow-repeat"></i> Reload')
             ]);
     }
 
@@ -65,9 +64,8 @@ class CategoriesDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('Category id')->addClass('text-center'),
-            Column::make('Category Name')->addClass('text-center'),
-            Column::make('Products Count')->addClass('text-center'),
+            Column::make('id')->addClass('text-center'),
+            Column::make('category_name')->addClass('text-center'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
