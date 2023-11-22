@@ -15,25 +15,25 @@
       <div class="col-12">
         {{-- TODO:Integrate with sweetalert --}}
         {{-- @include('utils.alerts') --}}
-        <h3>Hello, <span class="text-primary">{{-- auth()->user()->name --}}tes</span></h3>
+        <h3>Hello, <span class="text-primary">{{ auth()->user()->name }}</span></h3>
         <p class="font-italic">Change your profile information & password from here...</p>
       </div>
       <div class="col-lg-6">
         <div class="card">
           <div class="card-body">
-            <form action="{{ route('profile.index') }}" method="POST">
+            <form action="/user-profile/{{ auth()->user()->id }}" method="post">
               @csrf
               @method('patch')
               <div class="form-group">
                 <label for="name">Name <span class="text-danger">*</span></label>
-                <input class="form-control" type="text" name="name" required value="{{-- auth()->user()->name --}}tes">
+                <input class="form-control" type="text" name="name" required value="{{ auth()->user()->name }}">
                 @error('name')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
               </div>
               <div class="form-group">
                 <label for="email">Email <span class="text-danger">*</span></label>
-                <input class="form-control" type="email" name="email" required value="{{-- auth()->user()->email --}}tes">
+                <input class="form-control" type="email" name="email" required value="{{ auth()->user()->email }}">
                 @error('email')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -48,7 +48,7 @@
       <div class="col-lg-6">
         <div class="card">
           <div class="card-body">
-            <form action="{{ route('profile.index') }}" method="POST">
+            <form action="{{ route('profile.updatePassword') }}" method="POST">
               @csrf
               @method('patch')
               <div class="form-group">
