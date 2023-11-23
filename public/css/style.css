@@ -1,24 +1,218 @@
-.loginBorder {
-    border: 1px solid;
-    border-radius: 6px;
+/* POPPINS FONT */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+    font-family: "Poppins", sans-serif;
 }
-.form-signin .form-floating:focus-within {
-    z-index: 2;
+.wrapper {
+    background: #e2e8f0;
+    padding: 0 20px 0 20px;
+}
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.side-image {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px 0 0 10px;
+    position: relative;
+}
+.row {
+    width: 900px;
+    height: 550px;
+    border-radius: 10px;
+    background: #fff;
+    padding: 0px;
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
+}
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.text p {
+    color: #fff;
+    font-size: 20px;
+}
+i {
+    font-weight: 400;
+    font-size: 15px;
+}
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.input-box {
+    width: 330px;
+    box-sizing: border-box;
+}
+img {
+    width: 100%;
+    height: 550px;
+    position: absolute;
+    border-radius: 10px 0 0 10px;
+    left: 0;
+    bottom: 0;
+}
+.input-box header {
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 45px;
+}
+.input-field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 0 10px 0 10px;
+}
+.input {
+    height: 45px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    margin-bottom: 20px;
+    color: #40414a;
+}
+.input-box .input-field label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    pointer-events: none;
+    transition: 0.5s;
+}
+.input-field label {
+    font-size: 17px;
+}
+.input-field input:focus ~ label {
+    top: -10px;
+    font-size: 14px;
+}
+.input-field input:valid ~ label {
+    top: -10px;
+    font-size: 14px;
+    color: #5d5076;
+}
+.input-field .input:focus,
+.input-field .input:valid {
+    border-bottom: 1px solid #743ae1;
+}
+.submit {
+    border: none;
+    outline: none;
+    height: 45px;
+    background: #bfdbfe;
+    border-radius: 5px;
+    transition: 0.4s;
+}
+.submit:hover {
+    background: rgba(37, 95, 156, 0.937);
+    color: #fff;
+}
+.signin {
+    text-align: center;
+    font-size: small;
+    margin-top: 25px;
+}
+span {
+    font-size: 16px;
+}
+span a {
+    text-decoration: none;
+    font-weight: 700;
+    color: #1368e8;
+    transition: all 0.3s ease-in-out;
+}
+span a:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    color: #1e40af;
+}
+.submit {
+    font-size: 20px;
+}
+.has-error {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.forgot-pass {
+    text-align: end;
+    padding: 10px 0;
+}
+.forgot-pass span {
+    font-size: 14px;
 }
 
-.form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+@media only screen and (max-width: 767px) {
+    .right {
+        margin-top: -50px;
+    }
+    label,
+    input {
+        font-size: 16px;
+    }
+    .input-box header {
+        margin-bottom: 10px;
+        font-size: 22px;
+    }
+    .side-image {
+        display: none;
+    }
+    img {
+        display: none;
+    }
+    .text {
+        position: absolute;
+        top: 70%;
+        text-align: center;
+    }
+    .text p,
+    i {
+        font-size: 16px;
+    }
+    .row {
+        max-width: 420px;
+        width: 100%;
+    }
+    .submit {
+        font-size: 18px;
+    }
+    span {
+        font-size: 15px;
+    }
 }
 
-.form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
-.form-registration input {
-    border-radius: 0;
-    margin-bottom: -1px;
+@media only screen and (max-width: 375px) {
+    .wrapper {
+    }
+    .input-box .input-field label {
+        left: 65px;
+    }
+    .input-field {
+        justify-content: center;
+        align-items: center;
+    }
+    .input {
+        width: 200px;
+    }
+    .input-field .submit {
+        width: 68%;
+    }
+    .submit {
+        font-size: 17px;
+    }
+    span {
+        font-size: 14px;
+    }
 }
