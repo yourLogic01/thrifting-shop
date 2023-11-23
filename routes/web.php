@@ -11,6 +11,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\RegisterController;
+
 // use App\Http\Controllers\OrganizeStockController;
 
 /*
@@ -26,10 +28,14 @@ use App\Http\Controllers\CategoriesController;
 
 // Login Controller
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
 
 // Logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Register Route
+Route::get('/sign-up', [RegisterController::class, 'index'])->name('register')->middleware('guest');
+
 // Home Route
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
