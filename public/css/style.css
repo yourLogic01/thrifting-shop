@@ -153,6 +153,9 @@ span a:hover {
 .forgot-pass span {
     font-size: 14px;
 }
+.forgot-pass a {
+    font-weight: 500;
+}
 
 @media only screen and (max-width: 767px) {
     .right {
@@ -194,8 +197,6 @@ span a:hover {
 }
 
 @media only screen and (max-width: 375px) {
-    .wrapper {
-    }
     .input-box .input-field label {
         left: 65px;
     }
