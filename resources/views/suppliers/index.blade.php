@@ -19,7 +19,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <a href="{{ route('supplier.create') }}" class="btn btn-primary">
+            <a href="{{ route('suppliers.create') }}" class="btn btn-primary">
               Add Supplier <i class="bi bi-plus"></i>
             </a>
 

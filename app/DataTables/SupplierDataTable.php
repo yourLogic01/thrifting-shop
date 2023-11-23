@@ -3,7 +3,6 @@
 namespace App\DataTables;
 
 use App\Models\Supplier;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -24,7 +23,7 @@ class SupplierDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($data) {
-                return view('suppliers.partials.actions', ['data' => $data]);
+                return view('suppliers.includes.actions', ['data' => $data]);
             })
             ->setRowId('id');
     }
@@ -32,7 +31,7 @@ class SupplierDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(User $model): QueryBuilder
+    public function query(Supplier $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -48,13 +47,13 @@ class SupplierDataTable extends DataTable
             ->minifiedAjax()
             //->dom('Bfrtip')
             ->orderBy(1)
-            ->selectStyleSingle()
-            ->buttons([
-                Button::make('reset')
-                    ->text('<i class="bi bi-x-circle"></i> Reset'),
-                Button::make('reload')
-                    ->text('<i class="bi bi-arrow-repeat"></i> Reload')
-            ]);
+            ->selectStyleSingle();
+        // ->buttons([
+        //     Button::make('reset')
+        //         ->text('<i class="bi bi-x-circle"></i> Reset'),
+        //     Button::make('reload')
+        //         ->text('<i class="bi bi-arrow-repeat"></i> Reload')
+        // ]);
     }
 
     /**
