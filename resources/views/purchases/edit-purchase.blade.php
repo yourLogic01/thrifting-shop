@@ -5,7 +5,7 @@
 @section('breadcrumb')
   <ol class="breadcrumb border-0 m-0">
     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('purchase.index') }}">Purchases</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('purchases.index') }}">Purchases</a></li>
     <li class="breadcrumb-item active">Edit</li>
   </ol>
 @endsection
@@ -24,7 +24,7 @@
           <div class="card-body">
             {{-- TODO:Integrate with sweetalert --}}
             {{-- @include('utils.alerts') --}}
-            <form id="purchase-form" action="{{ route('home') }}" method="POST">
+            <form id="purchase-form" action="{{ route('purchases.update', ['purchase' => $purchase->id]) }}" method="POST">
               @csrf
               @method('patch')
               <div class="form-row">
@@ -40,10 +40,13 @@
                     <div class="form-group">
                       <label for="supplier_id">Supplier <span class="text-danger">*</span></label>
                       <select class="form-control" name="supplier_id" id="supplier_id" required>
-                        <option {{ $purchase->supplier_id == $supplier->id ? 'selected' : '' }} value="">
-                          --Select Supplier--
-                        </option>
-                      </select>
+                        <option value="">--Select Supplier--</option>
+                        @foreach ($suppliers as $individualSupplier)
+                            <option value="{{ $individualSupplier->id }}" {{ $purchase->supplier_id == $individualSupplier->id ? 'selected' : '' }}>
+                                {{ $individualSupplier->supplier_name }}
+                            </option>
+                        @endforeach
+                    </select>
                     </div>
                   </div>
                 </div>
@@ -76,7 +79,7 @@
                     <div class="form-group">
                       <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
                       <input type="text" class="form-control" name="payment_method" required
-                        value="{{ $purchase->payment_method }}" readonly>
+                        value="{{ $purchase->payment_method }}">
                     </div>
                   </div>
                 </div>
@@ -84,7 +87,7 @@
                   <div class="form-group">
                     <label for="paid_amount">Amount Received <span class="text-danger">*</span></label>
                     <input id="paid_amount" type="text" class="form-control" name="paid_amount" required
-                      value="{{ $purchase->paid_amount }}" readonly>
+                      value="{{ $purchase->paid_amount }}">
                   </div>
                 </div>
               </div>

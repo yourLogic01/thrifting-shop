@@ -44,7 +44,7 @@
   <ul class="c-sidebar-nav-dropdown-items">
     <li class="c-sidebar-nav-item">
       <a class="c-sidebar-nav-link {{ request()->routeIs('purchases.create') ? 'c-active' : '' }}"
-        href="{{ route('purchase.create') }}">
+        href="{{ route('purchases.create') }}">
         <i class="c-sidebar-nav-icon bi bi-journal-plus" style="line-height: 1;"></i> Create Purchase
       </a>
     </li>
@@ -53,7 +53,7 @@
   <ul class="c-sidebar-nav-dropdown-items">
     <li class="c-sidebar-nav-item">
       <a class="c-sidebar-nav-link {{ request()->routeIs('purchases.index') ? 'c-active' : '' }}"
-        href="{{ route('purchase.index') }}">
+        href="{{ route('purchases.index') }}">
         <i class="c-sidebar-nav-icon bi bi-journals" style="line-height: 1;"></i> All Purchases
       </a>
     </li>
@@ -87,7 +87,7 @@
 
 {{-- Supplier sidebar navigation --}}
 <li class="c-sidebar-nav-item {{ request()->routeIs('suppliers.*') ? 'c-active' : '' }}">
-  <a class="c-sidebar-nav-link" href="{{ route('supplier.index') }}">
+  <a class="c-sidebar-nav-link" href="{{ route('suppliers.index') }}">
     <i class="c-sidebar-nav-icon bi bi-people-fill" style="line-height: 1;"></i> Supplier
   </a>
 </li>

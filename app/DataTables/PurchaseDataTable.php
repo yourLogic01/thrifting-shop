@@ -47,9 +47,11 @@ class PurchaseDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(User $model): QueryBuilder
+    public function query(Purchase $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()
+            ->join('suppliers', 'purchases.supplier_id', '=', 'suppliers.id')
+            ->select('purchases.*', 'suppliers.supplier_name');
     }
 
     /**
@@ -63,13 +65,13 @@ class PurchaseDataTable extends DataTable
             ->minifiedAjax()
             //->dom('Bfrtip')
             ->orderBy(1)
-            ->selectStyleSingle()
-            ->buttons([
-                Button::make('reset')
-                    ->text('<i class="bi bi-x-circle"></i> Reset'),
-                Button::make('reload')
-                    ->text('<i class="bi bi-arrow-repeat"></i> Reload')
-            ]);
+            ->selectStyleSingle();
+        // ->buttons([
+        //     Button::make('reset')
+        //         ->text('<i class="bi bi-x-circle"></i> Reset'),
+        //     Button::make('reload')
+        //         ->text('<i class="bi bi-arrow-repeat"></i> Reload')
+        // ]);
     }
 
     /**
@@ -88,16 +90,16 @@ class PurchaseDataTable extends DataTable
             Column::computed('status')
                 ->className('text-center align-middle'),
 
-            Column::computed('total_amount')
-                ->className('text-center align-middle'),
+            // Column::computed('total_amount')
+            //     ->className('text-center align-middle'),
 
             Column::computed('paid_amount')
                 ->className('text-center align-middle'),
 
-            Column::computed('due_amount')
-                ->className('text-center align-middle'),
+            // Column::computed('due_amount')
+            //     ->className('text-center align-middle'),
 
-            Column::computed('payment_status')
+            Column::computed('payment_method')
                 ->className('text-center align-middle'),
 
             Column::computed('action')

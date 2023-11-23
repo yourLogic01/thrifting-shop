@@ -5,7 +5,7 @@
 @section('breadcrumb')
   <ol class="breadcrumb border-0 m-0">
     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('purchase.index') }}">Purchases</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('purchases.index') }}">Purchases</a></li>
     <li class="breadcrumb-item active">Add</li>
   </ol>
 @endsection
@@ -24,7 +24,7 @@
           <div class="card-body">
             {{-- TODO:Integrate with sweetalert --}}
             {{-- @include('utils.alerts') --}}
-            <form id="purchase-form" action="{{ route('home') }}" method="POST">
+            <form id="purchase-form" action="{{ route('purchases.store') }}" method="POST">
               @csrf
               <div class="form-row">
                 <div class="col-lg-4">
@@ -39,6 +39,9 @@
                       <label for="supplier_id">Supplier <span class="text-danger">*</span></label>
                       <select class="form-control" name="supplier_id" id="supplier_id" required>
                         <option value="">--Select Supplier--</option>
+                        @foreach ($suppliers as $supplier)
+                            <option value="{{ $supplier->id}}">{{ $supplier->supplier_name }}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -74,7 +77,7 @@
                       <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
                       <select class="form-control" name="payment_method" id="payment_method" required>
                         <option value="Cash">Cash</option>
-                        <option value="Bank Transfer">Bank Transfer</option>
+                        <option value="Transfer">Bank Transfer</option>
                       </select>
                     </div>
                   </div>

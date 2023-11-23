@@ -3,11 +3,11 @@
     <i class="bi bi-three-dots-vertical"></i>
   </button>
   <div class="dropdown-menu">
-    <a href="{{ route('home') }}" class="dropdown-item">
+    <a href="{{ route('purchases.edit', ['purchase' => $data->id]) }}" class="dropdown-item">
       <i class="bi bi-pencil mr-2 text-primary" style="line-height: 1;"></i> Edit
     </a>
 
-    <a href="{{ route('home') }}" class="dropdown-item">
+    <a href="{{ route('purchases.show', ['purchase' => $data->id]) }}" class="dropdown-item">
       <i class="bi bi-eye mr-2 text-info" style="line-height: 1;"></i> Details
     </a>
 
@@ -18,7 +18,7 @@
               document.getElementById('destroy{{ $data->id }}').submit()
               }">
       <i class="bi bi-trash mr-2 text-danger" style="line-height: 1;"></i> Delete
-      <form id="destroy{{ $data->id }}" class="d-none" action="{{ route('home') }}" method="POST">
+      <form id="destroy{{ $data->id }}" class="d-none" action="{{ route('purchases.destroy', ['purchase' => $data->id]) }}" method="POST">
         @csrf
         @method('delete')
       </form>

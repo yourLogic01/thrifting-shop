@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\SupplierDataTable;
 use Illuminate\Http\Request;
+use App\Models\Supplier;
 
 class SupplierController extends Controller
 {
@@ -28,7 +29,17 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'supplier_name' => 'required',
+            'supplier_email' => 'required|email',
+            'supplier_phone' => 'required',
+            'address' => 'required',
+        ]);
+
+        // Save the supplier to the database
+        Supplier::create($data);
+
+        return redirect()->route('suppliers.index')->with('success', 'Supplier created successfully.');
     }
 
     /**
@@ -36,30 +47,50 @@ class SupplierController extends Controller
      */
     public function show(string $id)
     {
-        return view('suppliers.show-supplier');
+        // $supplier = Supplier::find($id);
+
+        // if (!$supplier) {
+        //     return redirect()->route('supplier.index')->with('error', 'Supplier not found.');
+        // }
+
+        // return view('suppliers.show-supplier', compact('supplier'));
+        $supplier = Supplier::findOrFail($id);
+
+        return view('suppliers.show-supplier', compact('supplier'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Supplier $supplier)
     {
-        return view('suppliers.edit-supplier');
+        return view('suppliers.edit-supplier', compact('supplier'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Supplier $supplier)
     {
-        //
+        $data = $request->validate([
+            'supplier_name' => 'required',
+            'supplier_email' => 'required|email',
+            'supplier_phone' => 'required',
+            'address' => 'required',
+        ]);
+
+        $supplier->update($data);
+
+        return redirect()->route('suppliers.index')->with('success', 'Supplier updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Supplier $supplier)
     {
-        //
+        $supplier->delete();
+
+        return redirect()->route('suppliers.index')->with('success', 'Supplier deleted successfully.');
     }
 }

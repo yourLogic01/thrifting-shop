@@ -66,13 +66,13 @@ Route::resource('product-categories', CategoriesController::class)->except('show
 
 // Purchases Route
 Route::resource('purchases', PurchaseController::class)->names([
-  'index' => 'purchase.index',
-  'create' => 'purchase.create',
-  'store' => 'purchase.store',
-  'show' => 'purchase.show',
-  'edit' => 'purchase.edit',
-  'update' => 'purchase.update',
-  'destroy' => 'purchase.destroy',
+  'index' => 'purchases.index',
+  'create' => 'purchases.create',
+  'store' => 'purchases.store',
+  'show' => 'purchases.show',
+  'edit' => 'purchases.edit',
+  'update' => 'purchases.update',
+  'destroy' => 'purchases.destroy',
 ]);
 
 // Sales Route
@@ -88,13 +88,13 @@ Route::resource('sales', SaleController::class)->names([
 
 // Suppliers Route
 Route::resource('suppliers', SupplierController::class)->names([
-  'index' => 'supplier.index',
-  'create' => 'supplier.create',
-  'store' => 'supplier.store',
-  'show' => 'supplier.show',
-  'edit' => 'supplier.edit',
-  'update' => 'supplier.update',
-  'destroy' => 'supplier.destroy',
+  'index' => 'suppliers.index',
+  'create' => 'suppliers.create',
+  'store' => 'suppliers.store',
+  'show' => 'suppliers.show',
+  'edit' => 'suppliers.edit',
+  'update' => 'suppliers.update',
+  'destroy' => 'suppliers.destroy',
 ]);
 
 // Reports Route
