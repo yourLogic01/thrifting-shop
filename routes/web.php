@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\RegisterController;
 
 // use App\Http\Controllers\OrganizeStockController;
@@ -35,6 +36,12 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Register Route
 Route::get('/sign-up', [RegisterController::class, 'index'])->name('register')->middleware('guest');
+
+// Forgot Password Route
+Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password')->middleware('guest');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'forgotPasswordPost'])->name('forgot-password-post');
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'resetPassword'])->name('reset-password');
+Route::post('/reset-password', [ForgotPasswordController::class, 'resetPasswordPost'])->name('reset-password-post');
 
 // Home Route
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');

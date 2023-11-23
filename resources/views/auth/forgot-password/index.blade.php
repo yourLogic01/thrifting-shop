@@ -10,21 +10,90 @@
   {{-- Style CSS --}}
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <title>{{ config('app.name') }} - {{ $title }}</title>
+  <style>
+    .row {
+      max-width: 500px;
+      max-height: 450px;
+    }
+
+    .input-box header {
+      margin-top: -50px;
+    }
+
+    .input-box p {
+      font-size: 15px;
+      margin-top: -20px;
+      padding-bottom: 15px;
+      opacity: 90%;
+    }
+
+    .input-field {
+      padding: 10px 0;
+    }
+
+    .back-btn {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .back-btn a {
+      text-decoration: none;
+      color: #1368e8;
+      transition: all .3s ease-in-out;
+    }
+
+    .back-btn a:hover {
+      color: #1e40af;
+    }
+
+    @media only screen and (max-width: 767px) {
+      .row {
+        width: 400px;
+        height: 400px;
+      }
+
+      .input-box header {
+        margin-top: 0;
+      }
+
+      .input-box p {
+        margin-top: 23px;
+        font-size: 14px;
+
+      }
+    }
+
+    @media only screen and (max-width: 375px) {
+      .row {
+        width: 300px;
+        height: 400px;
+      }
+
+      .input-box p {
+        padding-left: 35px;
+      }
+    }
+  </style>
 </head>
 
 <body>
   <div class="wrapper">
     <div class="container main">
       <div class="row">
-        <div class="col-md-6 side-image">
-          <img src="{{ asset('images/login-image.jpg') }}" alt="Login Image">
-        </div>
-
-        <div class="col-md-6 right">
+        <div class="col-md-12 right">
           <div class="has-error">
-            @if (session()->has('loginError'))
+            @if ($errors->any())
+              @foreach ($errors->all() as $error)
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{ $error }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              @endforeach
+            @endif
+
+            @if (session()->has('error'))
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('loginError') }}
+                {{ session('error') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             @endif
@@ -38,9 +107,10 @@
           </div>
 
           <div class="input-box">
-            <form action="{{ route('authenticate') }}" method="POST">
+            <form action="{{ route('forgot-password-post') }}" method="POST">
               @csrf
-              <header>Login</header>
+              <header>Reset your password</header>
+              <p>Enter your email below to receive password reset link.</p>
               <div class="input-field">
                 <input type="text" class="input @error('email') is-invalid @enderror" id="email" name="email"
                   value="{{ old('email') }}" required autocomplete="off">
@@ -52,18 +122,11 @@
                 @enderror
               </div>
               <div class="input-field">
-                <input type="password" name="password" class="input" id="pass" required>
-                <label for="pass">Password</label>
-              </div>
-              <div class="input-field">
-                <input type="submit" class="submit" value="Sign In">
+                <input type="submit" class="submit" value="Submit">
               </div>
             </form>
-            <div class="forgot-pass">
-              <span><a href="{{ route('forgot-password') }}">Forgot password?</a></span>
-            </div>
-            <div class="signin">
-              <span>Don't have an account? <a href="{{ route('register') }}">Sign Up</a></span>
+            <div class="back-btn">
+              <a href="{{ route('login') }}">Back to login</a>
             </div>
           </div>
         </div>
