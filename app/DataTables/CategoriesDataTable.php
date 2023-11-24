@@ -2,17 +2,15 @@
 
 namespace App\DataTables;
 
-use App\Models\Categories;
 use App\Models\Category;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Yajra\DataTables\EloquentDataTable;
-use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class CategoriesDataTable extends DataTable
 {
@@ -35,7 +33,7 @@ class CategoriesDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Categories $model): QueryBuilder
+    public function query(Category $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -50,11 +48,16 @@ class CategoriesDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
+            ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
+                                'tr' .
+                                <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([
-                Button::make('excel')->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
-                Button::make('print')->text('<i class="bi bi-printer-fill"></i> Print'),
+                Button::make('excel')
+                    ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
+                Button::make('print')
+                    ->text('<i class="bi bi-printer-fill"></i> Print'),
             ]);
     }
 
@@ -64,12 +67,14 @@ class CategoriesDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id')->addClass('text-center'),
+            Column::make('category_code')
+                ->addClass('text-center'),
+
             Column::make('category_name')->addClass('text-center'),
+
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
                 ->addClass('text-center'),
         ];
     }
