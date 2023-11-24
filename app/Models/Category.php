@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class Category extends Model
 {
     use HasFactory;
     protected $table = 'categories';
@@ -15,4 +15,9 @@ class Categories extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id', 'id');
+    }
 }

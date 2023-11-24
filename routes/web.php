@@ -66,17 +66,6 @@ Route::resource('product-categories', CategoriesController::class)->except('show
   'destroy' => 'product-categories.destroy',
 ]);
 
-// Organize Stock Route
-// Route::resource('organize-stock', OrganizeStockController::class)->names([
-//   'index' => 'organize-stock.index',
-//   'create' => 'organize-stock.create',
-//   'store' => 'organize-stock.store',
-//   'show' => 'organize-stock.show',
-//   'edit' => 'organize-stock.edit',
-//   'update' => 'organize-stock.update',
-//   'destroy' => 'organize-stock.destroy',
-// ]);
-
 // Purchases Route
 Route::resource('purchases', PurchaseController::class)->names([
   'index' => 'purchases.index',

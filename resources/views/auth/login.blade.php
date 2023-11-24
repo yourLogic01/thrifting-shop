@@ -62,9 +62,9 @@
             <div class="forgot-pass">
               <span><a href="{{ route('forgot-password') }}">Forgot password?</a></span>
             </div>
-            <div class="signin">
+            {{-- <div class="signin">
               <span>Don't have an account? <a href="{{ route('register') }}">Sign Up</a></span>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>

@@ -2,8 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Products;
-use App\Models\User;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -32,10 +31,9 @@ class ProductDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Products $model): QueryBuilder
+    public function query(Product $model): QueryBuilder
     {
-        $data = $model->leftJoin('categories', 'products.categories_id', 'categories.id');
-        return $data->newQuery();
+        return $model->newQuery()->with('category');
     }
 
     /**
@@ -48,6 +46,9 @@ class ProductDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
+            ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
+                                'tr' .
+                                <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
             ->orderBy(5)
             ->selectStyleSingle()
             ->buttons([
@@ -64,24 +65,26 @@ class ProductDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('category_name')
+            Column::make('category.category_name')
                 ->title('Category')
                 ->className('text-center align-middle'),
+
             Column::make('product_code')
                 ->title('Code')
                 ->className('text-center align-middle'),
+
             Column::make('product_name')
                 ->title('Name')
                 ->className('text-center align-middle'),
-            Column::computed('alert_qty')
-                ->title('Cost')
-                ->className('text-center align-middle'),
-            Column::computed('price')
+
+            Column::make('price')
                 ->title('Price')
                 ->className('text-center align-middle'),
-            Column::computed('qty')
+
+            Column::make('qty')
                 ->title('Quantity')
                 ->className('text-center align-middle'),
+
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

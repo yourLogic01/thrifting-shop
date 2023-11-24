@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\CategoriesDataTable;
-use App\Models\Categories;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -19,23 +19,17 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'category_name' => 'required|unique:categories',
+            'category_code' => 'required|unique:categories,category_code',
+            'category_name' => 'required',
         ]);
 
-        Categories::query()->create([
+        Category::query()->create([
+            'category_code' => $request->category_code,
             'category_name' => $request->category_name,
         ]);
 
@@ -43,20 +37,12 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
+        $category = Category::findOrFail($id);
 
-        $category = Categories::findOrFail($id);
         return view('products.categories.edit-category', [
             'category' => $category
         ]);
@@ -65,16 +51,20 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validate([
+        $request->validate([
+            'category_code' => 'required|unique:categories,category_code,' . $id,
             'category_name' => 'required',
         ]);
+
         try {
             DB::beginTransaction();
-            $category = Categories::findOrFail($id);
-            $category->category_name = $request->category_name;
-            $category->save();
+
+            Category::findOrFail($id)->update([
+                'category_code' => $request->category_code,
+                'category_name' => $request->category_name,
+            ]);
 
             DB::commit();
 
@@ -89,14 +79,16 @@ class CategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         try {
             DB::beginTransaction();
-            $category = Categories::findOrFail($id);
+
+            $category = Category::findOrFail($id);
             $category->delete();
 
             DB::commit();
+
             return response()->redirectToRoute('product-categories.index')->with('success', 'Categories deleted successfully');
         } catch (\Throwable $th) {
             DB::rollBack();
