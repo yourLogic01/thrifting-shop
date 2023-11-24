@@ -8,19 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Purchase extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'supplier_id',
-        'date',
-        'status',
-        'payment_method',
-        'paid_amount',
-        'note',
-        'supplier_name',
-    ];
+    protected $guarded = ['id'];
     protected $table = 'purchases';
 
-    public function products()
+    public function purchaseDetails()
     {
-        return $this->hasMany(Products::class, 'purchase_id', 'id');
+        return $this->hasMany(PurchaseDetail::class, 'purchase_id', 'id');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $number = Purchase::max('id') + 1;
+            $model->reference = make_reference_id('PR', $number);
+        });
     }
 }
