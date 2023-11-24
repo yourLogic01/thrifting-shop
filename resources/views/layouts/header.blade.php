@@ -25,7 +25,7 @@
       <i class="bi bi-bell" style="font-size: 20px;"></i>
       <span class="badge badge-pill badge-danger">
         @php
-          $low_quantity_products = App\Models\Product::select('id','product_name', 'qty', 'alert_qty', 'product_code')
+          $low_quantity_products = App\Models\Product::select('id','product_name', 'qty', 'alert_qty')
               ->whereColumn('qty', '<=', 'alert_qty')
               ->get();
           echo $low_quantity_products->count();
@@ -38,7 +38,7 @@
           </div>
           @forelse($low_quantity_products as $product)
               <a class="dropdown-item" href="{{ route('product.show', $product->id) }}">
-                  <i class="bi bi-hash mr-1 text-primary"></i> Product: "{{ $product->product_code }}" is low in quantity!
+                  <i class="bi bi-hash mr-1 text-primary"></i> Product: "{{ $product->product_name }}" is low in quantity!
               </a>
           @empty
               <a class="dropdown-item" href="#">
