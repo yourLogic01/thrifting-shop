@@ -25,15 +25,6 @@ class UserDataTable extends DataTable
             ->addColumn('action', function ($data) {
                 return view('users.includes.actions', ['data' => $data]);
             })
-            // ->addColumn('position', function ($data) {
-            //     if ($data->is_active == 1) {
-            //         $status = '<span class="badge badge-success">Active</span>';
-            //     } else {
-            //         $status = '<span class="badge badge-warning">Deactivated</span>';
-            //     }
-
-            //     return $status;
-            // })
             ->setRowId('id');
     }
 
@@ -55,13 +46,16 @@ class UserDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
+            ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
+                                'tr' .
+                                <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
             ->orderBy(3)
             ->selectStyleSingle()
             ->buttons([
-                Button::make('reset')
-                    ->text('<i class="bi bi-x-circle"></i> Reset'),
-                Button::make('reload')
-                    ->text('<i class="bi bi-arrow-repeat"></i> Reload')
+                Button::make('excel')
+                    ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
+                Button::make('print')
+                    ->text('<i class="bi bi-printer-fill"></i> Print'),
             ]);
     }
 
@@ -84,8 +78,6 @@ class UserDataTable extends DataTable
                 ->exportable(false)
                 ->printable(false)
                 ->className('text-center align-middle'),
-            Column::make('created_at')
-                ->visible(false)
         ];
     }
 
