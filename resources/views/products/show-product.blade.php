@@ -32,11 +32,11 @@
                 </tr>
                 <tr>
                   <th>Product Price</th>
-                  <td>{{ $product->price }}</td>
+                  <td>{{ format_currency($product->price) }}</td>
                 </tr>
                 <tr>
                   <th>Quantity</th>
-                  <td>{{ $product->qty }}</td>
+                  <td>{{ $product->qty }} Pcs</td>
                 </tr>
                 <tr>
                   <th>Alert Quantity</th>

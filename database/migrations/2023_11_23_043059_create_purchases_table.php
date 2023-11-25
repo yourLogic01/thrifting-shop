@@ -13,14 +13,19 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->string('reference')->default('RP')->nullable();
-            $table->unsignedBigInteger('supplier_id');
-            $table->foreign('supplier_id')->references('id')->on('suppliers');
+            $table->string('reference');
+            $table->unsignedBigInteger('supplier_id')->nullable();
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->nullOnDelete();
+            $table->string('supplier_name');
             $table->date('date');
-            $table->enum('status', ['pending', 'ordered', 'completed']);
-            $table->enum('payment_method', ['cash', 'transfer']);
+            $table->integer('sub_total');
             $table->integer('paid_amount');
-            $table->text('note');
+            $table->integer('due_amount');
+            $table->integer('discount')->default(0);
+            $table->enum('status', ['pending', 'completed']);
+            $table->string('payment_status');
+            $table->enum('payment_method', ['cash', 'transfer']);
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

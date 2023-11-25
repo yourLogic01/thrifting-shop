@@ -40,7 +40,7 @@
                       <select class="form-control" name="supplier_id" id="supplier_id" required>
                         <option value="">--Select Supplier--</option>
                         @foreach ($suppliers as $supplier)
-                            <option value="{{ $supplier->id}}">{{ $supplier->supplier_name }}</option>
+                          <option value="{{ $supplier->id }}">{{ $supplier->supplier_name }}</option>
                         @endforeach
                       </select>
                     </div>
@@ -58,16 +58,15 @@
               </div>
 
               {{-- TODO: Product Cart --}}
-              {{-- <livewire:product-cart :cartInstance="'purchase'" /> --}}
+              <livewire:product-cart :cartInstance="'purchase'" />
 
               <div class="form-row">
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label for="status">Status <span class="text-danger">*</span></label>
                     <select class="form-control" name="status" id="status" required>
-                      <option value="Pending">Pending</option>
-                      <option value="Ordered">Ordered</option>
-                      <option value="Completed">Completed</option>
+                      <option value="pending">Pending</option>
+                      <option value="completed">Completed</option>
                     </select>
                   </div>
                 </div>
@@ -76,8 +75,8 @@
                     <div class="form-group">
                       <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
                       <select class="form-control" name="payment_method" id="payment_method" required>
-                        <option value="Cash">Cash</option>
-                        <option value="Transfer">Bank Transfer</option>
+                        <option value="cash">Cash</option>
+                        <option value="transfer">Bank Transfer</option>
                       </select>
                     </div>
                   </div>
@@ -102,7 +101,7 @@
                 <textarea name="note" id="note" rows="5" class="form-control"></textarea>
               </div>
 
-              <div class="mt-3">
+              <div class="mt-5">
                 <button type="submit" class="btn btn-primary">
                   Create Purchase <i class="bi bi-plus"></i>
                 </button>
@@ -114,3 +113,26 @@
     </div>
   </div>
 @endsection
+
+@push('scripts')
+  <script src="{{ asset('js/jquery-mask-money.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+      $('#paid_amount').maskMoney({
+        prefix: 'Rp.',
+        thousands: '.',
+        decimal: ',',
+        allowZero: true,
+      });
+
+      $('#getTotalAmount').click(function() {
+        $('#paid_amount').maskMoney('mask', {{ Cart::instance('purchase')->total() }});
+      });
+
+      $('#purchase-form').submit(function() {
+        var paid_amount = $('#paid_amount').maskMoney('unmasked')[0];
+        $('#paid_amount').val(paid_amount);
+      });
+    });
+  </script>
+@endpush

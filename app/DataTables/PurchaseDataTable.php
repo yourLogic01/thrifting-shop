@@ -23,20 +23,20 @@ class PurchaseDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('total_amount', function ($data) {
-                return $data->total_amount;
+            ->addColumn('sub_total', function ($data) {
+                return format_currency($data->sub_total);
             })
             ->addColumn('paid_amount', function ($data) {
-                return $data->paid_amount;
+                return format_currency($data->paid_amount);
             })
             ->addColumn('due_amount', function ($data) {
-                return $data->due_amount;
+                return format_currency($data->due_amount);
             })
             ->addColumn('status', function ($data) {
                 return view('purchases.includes.status', ['data' => $data]);
             })
-            ->addColumn('payment_status', function ($data) {
-                return view('purchases.includes.payment-status', ['data' => $data]);
+            ->addColumn('payment_method', function ($data) {
+                return view('purchases.includes.payment-method', ['data' => $data]);
             })
             ->addColumn('action', function ($data) {
                 return view('purchases.includes.actions', ['data' => $data]);
@@ -49,9 +49,7 @@ class PurchaseDataTable extends DataTable
      */
     public function query(Purchase $model): QueryBuilder
     {
-        return $model->newQuery()
-            ->join('suppliers', 'purchases.supplier_id', '=', 'suppliers.id')
-            ->select('purchases.*', 'suppliers.supplier_name');
+        return $model->newQuery();
     }
 
     /**
@@ -64,14 +62,17 @@ class PurchaseDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
+            ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
+                                'tr' .
+                                <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
             ->orderBy(1)
-            ->selectStyleSingle();
-        // ->buttons([
-        //     Button::make('reset')
-        //         ->text('<i class="bi bi-x-circle"></i> Reset'),
-        //     Button::make('reload')
-        //         ->text('<i class="bi bi-arrow-repeat"></i> Reload')
-        // ]);
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel')
+                    ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
+                Button::make('print')
+                    ->text('<i class="bi bi-printer-fill"></i> Print'),
+            ]);
     }
 
     /**
@@ -90,14 +91,14 @@ class PurchaseDataTable extends DataTable
             Column::computed('status')
                 ->className('text-center align-middle'),
 
-            // Column::computed('total_amount')
-            //     ->className('text-center align-middle'),
+            Column::computed('sub_total')
+                ->className('text-center align-middle'),
 
             Column::computed('paid_amount')
                 ->className('text-center align-middle'),
 
-            // Column::computed('due_amount')
-            //     ->className('text-center align-middle'),
+            Column::computed('due_amount')
+                ->className('text-center align-middle'),
 
             Column::computed('payment_method')
                 ->className('text-center align-middle'),

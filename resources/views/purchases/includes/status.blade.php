@@ -1,9 +1,5 @@
-@if ($data->status == 'Pending')
+@if ($data->status == 'pending')
   <span class="badge badge-info">
-    {{ $data->status }}
-  </span>
-@elseif ($data->status == 'Ordered')
-  <span class="badge badge-primary">
     {{ $data->status }}
   </span>
 @else

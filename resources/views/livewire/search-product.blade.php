@@ -8,8 +8,8 @@
               <i class="bi bi-search text-primary"></i>
             </div>
           </div>
-          <input wire:keydown.escape="resetQuery" wire:model.live.debounce.500ms="query" type="text"
-            class="form-control" placeholder="Write a product name or id...">
+          <input wire:keydown.escape="resetQuery" wire:model.live.debounce.300ms="query" type="text"
+            class="form-control" placeholder="Write a product code or product name...">
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
                 </a>
               </li>
             @endforeach
-            @if ($search_results->count() >= $how_many)
+            @if ($search_results->count() >= $paginate)
               <li class="list-group-item list-group-item-action text-center">
                 <a wire:click.prevent="loadMore" class="btn btn-primary btn-sm" href="#">
                   Load More <i class="bi bi-arrow-down-circle"></i>

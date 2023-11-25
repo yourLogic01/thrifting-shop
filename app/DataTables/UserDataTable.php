@@ -25,15 +25,6 @@ class UserDataTable extends DataTable
             ->addColumn('action', function ($data) {
                 return view('users.includes.actions', ['data' => $data]);
             })
-            // ->addColumn('position', function ($data) {
-            //     if ($data->is_active == 1) {
-            //         $status = '<span class="badge badge-success">Active</span>';
-            //     } else {
-            //         $status = '<span class="badge badge-warning">Deactivated</span>';
-            //     }
-
-            //     return $status;
-            // })
             ->setRowId('id');
     }
 
@@ -58,6 +49,9 @@ class UserDataTable extends DataTable
                                 'tr' .
                                 <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
             //->dom('Bfrtip')
+            ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
+                                'tr' .
+                                <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
             ->orderBy(3)
             ->selectStyleSingle()
             ->buttons([
@@ -87,8 +81,6 @@ class UserDataTable extends DataTable
                 ->exportable(false)
                 ->printable(false)
                 ->className('text-center align-middle'),
-            Column::make('created_at')
-                ->visible(false)
         ];
     }
 
