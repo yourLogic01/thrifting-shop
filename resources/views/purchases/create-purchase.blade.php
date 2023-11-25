@@ -24,7 +24,7 @@
           <div class="card-body">
             {{-- TODO:Integrate with sweetalert --}}
             {{-- @include('utils.alerts') --}}
-            <form action="{{ route('purchases.store') }}" method="POST">
+            <form id="purchase-form" action="{{ route('purchases.store') }}" method="POST">
               @csrf
               <div class="form-row">
                 <div class="col-lg-4">
@@ -86,6 +86,11 @@
                     <label for="paid_amount">Amount Paid <span class="text-danger">*</span></label>
                     <div class="input-group">
                       <input id="paid_amount" type="text" class="form-control" name="paid_amount" required>
+                      <div class="input-group-append">
+                        <button id="getTotalAmount" class="btn btn-primary" type="button">
+                          <i class="bi bi-check-square"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -108,3 +113,26 @@
     </div>
   </div>
 @endsection
+
+@push('scripts')
+  <script src="{{ asset('js/jquery-mask-money.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+      $('#paid_amount').maskMoney({
+        prefix: 'Rp.',
+        thousands: '.',
+        decimal: ',',
+        allowZero: true,
+      });
+
+      $('#getTotalAmount').click(function() {
+        $('#paid_amount').maskMoney('mask', {{ Cart::instance('purchase')->total() }});
+      });
+
+      $('#purchase-form').submit(function() {
+        var paid_amount = $('#paid_amount').maskMoney('unmasked')[0];
+        $('#paid_amount').val(paid_amount);
+      });
+    });
+  </script>
+@endpush

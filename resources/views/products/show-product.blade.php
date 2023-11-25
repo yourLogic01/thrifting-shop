@@ -36,7 +36,7 @@
                 </tr>
                 <tr>
                   <th>Quantity</th>
-                  <td>{{ $product->qty }}</td>
+                  <td>{{ $product->qty }} Pcs</td>
                 </tr>
                 <tr>
                   <th>Alert Quantity</th>

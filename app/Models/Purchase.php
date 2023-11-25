@@ -25,4 +25,9 @@ class Purchase extends Model
             $model->reference = make_reference_id('PR', $number);
         });
     }
+
+    public function scopeCompleted($query)
+    {
+        return $query->where('status', 'completed');
+    }
 }

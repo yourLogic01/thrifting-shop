@@ -25,7 +25,7 @@
             <th class="align-middle text-center">Net Price</th>
             <th class="align-middle text-center">Stock</th>
             <th class="align-middle text-center">Quantity</th>
-            <th class="align-middle text-center">Total Amount</th>
+            <th class="align-middle text-center">Total Product</th>
             <th class="align-middle text-center">Action</th>
           </tr>
         </thead>
@@ -41,7 +41,7 @@
                 </td>
 
                 <td class="align-middle text-center text-center">
-                  {{ $cart_item->price }}
+                  {{ format_currency($cart_item->price) }}
                 </td>
 
                 <td class="align-middle text-center text-center">
@@ -92,7 +92,7 @@
               $totalPrice = Cart::instance($cart_instance)->total();
             @endphp
             <th>
-              (=) {{ format_currency($totalPrice) }}
+              (=) {{ $totalPrice }}
             </th>
           </tr>
         </table>
