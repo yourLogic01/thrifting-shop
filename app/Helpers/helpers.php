@@ -9,21 +9,8 @@ if (!function_exists('make_reference_id')) {
 }
 
 if (!function_exists('format_currency')) {
-  function format_currency($value, $format = true)
+  function format_currency($value)
   {
-    if (!$format) {
-      return $value;
-    }
-
-    $position = 'prefix';
-    $symbol = 'Rp.';
-    $decimal_separator = '.';
-    $thousand_separator = ',';
-
-    if ($position == 'prefix') {
-      $formatted_value = $symbol . number_format((float) $value, 2, $decimal_separator, $thousand_separator);
-    }
-
-    return $formatted_value;
+    return 'Rp. ' . number_format((float) $value, 2, ',', '.');
   }
 }

@@ -12,7 +12,7 @@
 
 @section('content')
   <div class="container-fluid">
-    <form action="{{ route('product.store') }}" method="POST">
+    <form id="product-form" action="{{ route('product.store') }}" method="POST">
       @csrf
       <div class="row">
         <div class="col-lg-12">
@@ -104,3 +104,21 @@
   {{-- Create Category Modal --}}
   @include('products/categories/includes/category-modal')
 @endsection
+
+@push('scripts')
+  <script src="{{ asset('js/jquery-mask-money.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+      $('#price').maskMoney({
+        prefix: 'Rp.',
+        thousands: '.',
+        decimal: ',',
+      });
+
+      $('#product-form').submit(function() {
+        var price = $('#price').maskMoney('unmasked')[0];
+        $('#price').val(price);
+      });
+    });
+  </script>
+@endpush

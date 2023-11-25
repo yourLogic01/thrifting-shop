@@ -12,7 +12,7 @@
 
 @section('content')
   <div class="container-fluid mb-4">
-    <form action="{{ route('product.update', $product->id) }}" method="POST">
+    <form id="product-form" action="{{ route('product.update', $product->id) }}" method="POST">
       @csrf
       @method('patch')
       <div class="row">
@@ -56,7 +56,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="price">Price <span class="text-danger">*</span></label>
-                    <input id="price" type="text" class="form-control" name="price" required
+                    <input id="price" type="text" class="form-control" name="price" min="0" required
                       value="{{ $product->price }}">
                   </div>
                 </div>
@@ -97,3 +97,23 @@
     </form>
   </div>
 @endsection
+
+@push('scripts')
+  <script src="{{ asset('js/jquery-mask-money.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+      $('#price').maskMoney({
+        prefix: 'Rp.',
+        thousands: '.',
+        decimal: ',',
+      });
+
+      $('#price').maskMoney('mask');
+
+      $('#product-form').submit(function() {
+        var price = $('#price').maskMoney('unmasked')[0];
+        $('#price').val(price);
+      });
+    });
+  </script>
+@endpush
