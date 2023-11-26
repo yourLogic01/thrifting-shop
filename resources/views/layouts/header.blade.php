@@ -25,8 +25,8 @@
       <i class="bi bi-bell" style="font-size: 20px;"></i>
       <span class="badge badge-pill badge-danger">
         @php
-          $low_quantity_products = App\Models\Product::select('id','product_name', 'qty', 'alert_qty')
-              ->whereColumn('qty', '<=', 'alert_qty')
+          $low_quantity_products = App\Models\Product::select('id', 'product_name', 'product_quantity', 'alert_quantity')
+              ->whereColumn('product_quantity', '<=', 'alert_quantity')
               ->get();
           echo $low_quantity_products->count();
         @endphp
@@ -35,16 +35,16 @@
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0">
       <div class="dropdown-header bg-light">
         <strong>{{ $low_quantity_products->count() }} Notifications</strong>
-          </div>
-          @forelse($low_quantity_products as $product)
-              <a class="dropdown-item" href="{{ route('product.show', $product->id) }}">
-                  <i class="bi bi-hash mr-1 text-primary"></i> Product: "{{ $product->product_name }}" is low in quantity!
-              </a>
-          @empty
-              <a class="dropdown-item" href="#">
-                  <i class="bi bi-app-indicator mr-2 text-danger"></i> No notifications available.
-              </a>
-          @endforelse
+      </div>
+      @forelse($low_quantity_products as $product)
+        <a class="dropdown-item" href="{{ route('product.show', $product->id) }}">
+          <i class="bi bi-hash mr-1 text-primary"></i> Product: "{{ $product->product_name }}" is low in quantity!
+        </a>
+      @empty
+        <a class="dropdown-item" href="#">
+          <i class="bi bi-app-indicator mr-2 text-danger"></i> No notifications available.
+        </a>
+      @endforelse
 
     </div>
   </li>

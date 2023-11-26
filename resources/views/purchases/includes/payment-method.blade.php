@@ -1,4 +1,4 @@
-@if ($data->payment_method == 'cash')
+@if ($data->payment_method == 'Cash')
   <span class="badge badge-success">
     {{ $data->payment_method }}
   </span>

@@ -13,18 +13,17 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
             $table->string('reference');
             $table->unsignedBigInteger('supplier_id')->nullable();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->nullOnDelete();
             $table->string('supplier_name');
-            $table->date('date');
-            $table->integer('sub_total');
+            $table->integer('total_amount');
             $table->integer('paid_amount');
             $table->integer('due_amount');
-            $table->integer('discount')->default(0);
-            $table->enum('status', ['pending', 'completed']);
+            $table->enum('status', ['Pending', 'Completed']);
             $table->string('payment_status');
-            $table->enum('payment_method', ['cash', 'transfer']);
+            $table->enum('payment_method', ['Cash', 'Transfer']);
             $table->text('note')->nullable();
             $table->timestamps();
         });

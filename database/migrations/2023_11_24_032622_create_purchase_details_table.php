@@ -17,11 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id')->nullable();
             $table->string('product_name');
             $table->string('product_code');
-            $table->integer('qty');
+            $table->integer('quantity');
             $table->integer('price');
             $table->integer('unit_price');
             $table->integer('sub_total');
-            $table->integer('product_discount_amount')->default(0);
             $table->foreign('purchase_id')->references('id')
                 ->on('purchases')->cascadeOnDelete();
             $table->foreign('product_id')->references('id')

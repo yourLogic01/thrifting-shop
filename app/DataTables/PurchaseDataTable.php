@@ -23,8 +23,8 @@ class PurchaseDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('sub_total', function ($data) {
-                return format_currency($data->sub_total);
+            ->addColumn('total_amount', function ($data) {
+                return format_currency($data->total_amount);
             })
             ->addColumn('paid_amount', function ($data) {
                 return format_currency($data->paid_amount);
@@ -91,7 +91,7 @@ class PurchaseDataTable extends DataTable
             Column::computed('status')
                 ->className('text-center align-middle'),
 
-            Column::computed('sub_total')
+            Column::computed('total_amount')
                 ->className('text-center align-middle'),
 
             Column::computed('paid_amount')

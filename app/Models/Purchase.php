@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Purchase extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
+    protected $guarded = [];
     protected $table = 'purchases';
 
     public function purchaseDetails()
@@ -28,6 +28,21 @@ class Purchase extends Model
 
     public function scopeCompleted($query)
     {
-        return $query->where('status', 'completed');
+        return $query->where('status', 'Completed');
+    }
+
+    public function getPaidAmountAttribute($value)
+    {
+        return $value / 100;
+    }
+
+    public function getTotalAmountAttribute($value)
+    {
+        return $value / 100;
+    }
+
+    public function getDueAmountAttribute($value)
+    {
+        return $value / 100;
     }
 }

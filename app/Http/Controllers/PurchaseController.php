@@ -38,27 +38,25 @@ class PurchaseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePurchaseRequest $request)
     {
-        DB::transaction(function () use ($request) {
-            // dd($request);
+        DB::beginTransaction();
 
-            $due_amount = $request->sub_total - $request->paid_amount;
-
-            if ($due_amount == $request->sub_total) {
-                $payment_status = 'pending';
+        try {
+            $due_amount = $request->total_amount - $request->paid_amount;
+            if ($due_amount == $request->total_amount) {
+                $payment_status = 'Paid';
             } else {
-                $payment_status = 'completed';
+                $payment_status = 'Upaid';
             }
 
-            $purchase = Purchase::create([
+            $purchase = DB::table('purchases')->insertGetId([
+                'date' => $request->date,
                 'supplier_id' => $request->supplier_id,
                 'supplier_name' => Supplier::findOrFail($request->supplier_id)->supplier_name,
-                'date' => $request->date,
-                'sub_total' => $request->sub_total * 100,
+                'total_amount' => $request->total_amount * 100,
                 'paid_amount' => $request->paid_amount * 100,
                 'due_amount' => $due_amount * 100,
-                'discount' => $request->discount,
                 'status' => $request->status,
                 'payment_status' => $payment_status,
                 'payment_method' => $request->payment_method,
@@ -66,31 +64,33 @@ class PurchaseController extends Controller
             ]);
 
             foreach (Cart::instance('purchase')->content() as $cart_item) {
-                PurchaseDetail::create([
-                    'purchase_id' => $purchase->id,
+                DB::table('purchase_details')->create([
+                    'purchase_id' => $purchase,
                     'product_id' => $cart_item->id,
                     'product_name' => $cart_item->name,
                     'product_code' => $cart_item->options->code,
-                    'qty' => $cart_item->qty,
+                    'quantity' => $cart_item->qty,
                     'price' => $cart_item->price * 100,
                     'unit_price' => $cart_item->options->unit_price * 100,
                     'sub_total' => $cart_item->options->sub_total * 100,
-                    'product_discount_amount' => $cart_item->options->product_discount * 100,
                 ]);
 
-                if ($request->status == 'completed') {
+                if ($request->status == 'Completed') {
                     $product = Product::findOrFail($cart_item->id);
-
                     $product->update([
-                        'qty' => $product->qty + $cart_item->qty
+                        'product_quantity' => $product->product_quantity + $cart_item->qty
                     ]);
                 }
             }
 
             Cart::instance('purchase')->destroy();
-        });
 
-        return redirect()->route('purchases.index')->with('success', 'Purchase created successfully.');
+            DB::commit();
+
+            return redirect()->route('purchases.index')->with('success', 'Purchase created successfully.');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**
