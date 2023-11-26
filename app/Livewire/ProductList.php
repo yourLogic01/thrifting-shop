@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\User;
+use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -19,7 +19,7 @@ class ProductList extends Component
 
     public $categories;
     public $category_id;
-    public $limit = 9;
+    public $limit = 6;
 
     public function mount($categories)
     {
@@ -30,10 +30,9 @@ class ProductList extends Component
     public function render()
     {
         return view('livewire.product-list', [
-            'products' => User::when($this->category_id, function ($query) {
+            'products' => Product::when($this->category_id, function ($query) {
                 return $query->where('category_id', $this->category_id);
-            })
-                ->paginate($this->limit)
+            })->paginate($this->limit)
         ]);
     }
 

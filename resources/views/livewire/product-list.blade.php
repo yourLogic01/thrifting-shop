@@ -1,7 +1,8 @@
 <div>
   <div class="card border-0 shadow-sm mt-3">
     <div class="card-body">
-      <livewire:pos.filter :categories="$categories" />
+      <livewire:filter :categories="$categories" />
+
       <div class="row position-relative">
         <div wire:loading.flex class="col-12 position-absolute justify-content-center align-items-center"
           style="top:0;right:0;left:0;bottom:0;background-color: rgba(255,255,255,0.5);z-index: 99;">
@@ -14,8 +15,8 @@
             style="cursor: pointer;">
             <div class="card border-0 shadow h-100">
               <div class="position-relative mt-4">
-                <div class="badge badge-info mb-3 position-absolute" style="right:10px;top:-7px;">Stock:
-                  {{ $product->product_quantity }}</div>
+                <div class="badge badge-info mb-3 position-absolute" style="right:10px;top:-5px;">
+                  Stock: {{ $product->product_quantity }}</div>
               </div>
               <div class="card-body">
                 <div class="mb-2">
@@ -24,7 +25,8 @@
                     {{ $product->product_code }}
                   </span>
                 </div>
-                <p class="card-text font-weight-bold">{{ $product->product_price }}</p>
+
+                <p class="card-text font-weight-bold">{{ format_currency($product->product_price) }}</p>
               </div>
             </div>
           </div>
@@ -36,7 +38,8 @@
           </div>
         @endforelse
       </div>
-      <div @class(['mt-3' => $products->hasPages()])>
+
+      <div @class(['mt-5' => $products->hasPages()])>
         {{ $products->links() }}
       </div>
     </div>

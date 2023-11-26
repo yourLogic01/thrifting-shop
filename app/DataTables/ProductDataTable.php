@@ -25,11 +25,11 @@ class ProductDataTable extends DataTable
             ->addColumn('action', function ($data) {
                 return view('products.includes.actions', ['data' => $data]);
             })
-            ->addColumn('price', function ($data) {
-                return format_currency($data->price);
+            ->addColumn('product_price', function ($data) {
+                return format_currency($data->product_price);
             })
-            ->addColumn('qty', function ($data) {
-                return $data->qty . ' Pcs ';
+            ->addColumn('product_quantity', function ($data) {
+                return $data->product_quantity . ' Pcs ';
             })
             ->setRowId('id');
     }
@@ -83,11 +83,11 @@ class ProductDataTable extends DataTable
                 ->title('Name')
                 ->className('text-center align-middle'),
 
-            Column::computed('price')
+            Column::computed('product_price')
                 ->title('Price')
                 ->className('text-center align-middle'),
 
-            Column::computed('qty')
+            Column::computed('product_quantity')
                 ->title('Quantity')
                 ->className('text-center align-middle'),
 

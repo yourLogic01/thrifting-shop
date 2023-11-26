@@ -45,15 +45,17 @@ class PurchaseController extends Controller
         try {
             $due_amount = $request->total_amount - $request->paid_amount;
             if ($due_amount == $request->total_amount) {
-                $payment_status = 'Paid';
+                $payment_status = 'Unpaid';
             } else {
-                $payment_status = 'Upaid';
+                $payment_status = 'Paid';
             }
+
+            $supplier = Supplier::find($request->supplier_id);
 
             $purchase = DB::table('purchases')->insertGetId([
                 'date' => $request->date,
                 'supplier_id' => $request->supplier_id,
-                'supplier_name' => Supplier::findOrFail($request->supplier_id)->supplier_name,
+                'supplier_name' => $supplier->supplier_name,
                 'total_amount' => $request->total_amount * 100,
                 'paid_amount' => $request->paid_amount * 100,
                 'due_amount' => $due_amount * 100,
@@ -64,7 +66,7 @@ class PurchaseController extends Controller
             ]);
 
             foreach (Cart::instance('purchase')->content() as $cart_item) {
-                DB::table('purchase_details')->create([
+                PurchaseDetail::create([
                     'purchase_id' => $purchase,
                     'product_id' => $cart_item->id,
                     'product_name' => $cart_item->name,

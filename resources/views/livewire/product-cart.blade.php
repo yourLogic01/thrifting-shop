@@ -88,7 +88,7 @@
               $totalPrice = Cart::instance($cart_instance)->total();
             @endphp
             <th>
-              (=) {{ $totalPrice }}
+              (=) {{ format_currency($totalPrice) }}
             </th>
           </tr>
         </table>

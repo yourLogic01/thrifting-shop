@@ -32,11 +32,10 @@
                       <span class="badge badge-success">
                         {{ $cart_item->options->code }}
                       </span>
-                      @include('livewire.includes.product-cart-modal')
                     </td>
 
                     <td class="align-middle">
-                      {{ $cart_item->price }}
+                      {{ format_currency($cart_item->price) }}
                     </td>
 
                     <td class="align-middle">
@@ -68,17 +67,13 @@
         <div class="col-md-12">
           <div class="table-responsive">
             <table class="table table-striped">
-              <tr>
-                <th>Discount ({{ $global_discount }}%)</th>
-                <td>(-) {{ Cart::instance($cart_instance)->discount() }}</td>
-              </tr>
               <tr class="text-primary">
                 <th>Total Amount</th>
-                {{-- @php
-                  $total_amount = Cart::instance($cart_instance)->total() + (float) $shipping;
-                @endphp --}}
+                @php
+                  $totalPrice = Cart::instance($cart_instance)->total();
+                @endphp
                 <th>
-                  (=) {{ $total_amount }}
+                  (=) {{ format_currency($totalPrice) }}
                 </th>
               </tr>
             </table>

@@ -30,6 +30,7 @@
                       value="{{ old('product_name') }}">
                   </div>
                 </div>
+
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="product_code">Product Code <span class="text-danger">*</span></label>
@@ -57,11 +58,12 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="price">Price <span class="text-danger">*</span></label>
-                    <input id="price" type="text" class="form-control" name="price" required
-                      value="{{ old('price') }}">
+                    <label for="product_price">Price <span class="text-danger">*</span></label>
+                    <input id="product_price" type="text" class="form-control" name="product_price" required
+                      value="{{ old('product_price') }}">
                   </div>
                 </div>
               </div>
@@ -69,22 +71,24 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="qty">Quantity <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" name="qty" required value="{{ old('qty') }}">
+                    <label for="product_quantity">Quantity <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="product_quantity" required
+                      value="{{ old('product_quantity') }}">
                   </div>
                 </div>
+
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="alert_qty">Alert Quantity <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" name="alert_qty" required
-                      value="{{ old('alert_qty', 0) }}">
+                    <label for="alert_quantity">Alert Quantity <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="alert_quantity" required
+                      value="{{ old('alert_quantity', 0) }}">
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="note">Note (Optional)</label>
-                <textarea name="note" id="note" rows="4" class="form-control"></textarea>
+                <label for="product_note">Note (Optional)</label>
+                <textarea name="product_note" id="product_note" rows="4" class="form-control"></textarea>
               </div>
             </div>
           </div>
@@ -109,15 +113,15 @@
   <script src="{{ asset('js/jquery-mask-money.js') }}"></script>
   <script>
     $(document).ready(function() {
-      $('#price').maskMoney({
+      $('#product_price').maskMoney({
         prefix: 'Rp.',
         thousands: '.',
         decimal: ',',
       });
 
       $('#product-form').submit(function() {
-        var price = $('#price').maskMoney('unmasked')[0];
-        $('#price').val(price);
+        var price = $('#product_price').maskMoney('unmasked')[0];
+        $('#product_price').val(price);
       });
     });
   </script>
