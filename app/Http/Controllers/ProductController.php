@@ -40,23 +40,23 @@ class ProductController extends Controller
             'category_id' => ['required'],
             'product_code' => ['required', 'string', 'unique:products,product_code'],
             'product_name' => ['required', 'string'],
-            'price' => ['required'],
-            'qty' => ['required', 'min:1'],
-            'alert_qty' => ['required', 'min:0'],
-            'note' => ['nullable', 'max:1000'],
+            'product_quantity' => ['required', 'min:1'],
+            'product_price' => ['required', 'string'],
+            'alert_quantity' => ['required', 'min:0'],
+            'product_note' => ['nullable', 'max:1000'],
         ]);
 
         Product::query()->create([
             'category_id' => $request->category_id,
             'product_code' => $request->product_code,
             'product_name' => $request->product_name,
-            'price' => $request->price,
-            'qty' => $request->qty,
-            'alert_qty' => $request->alert_qty,
-            'note' => $request->note,
+            'product_quantity' => $request->product_quantity,
+            'product_price' => $request->product_price,
+            'alert_quantity' => $request->alert_quantity,
+            'product_note' => $request->product_note,
         ]);
 
-        return response()->redirectToRoute('product.index')->with('success', 'Product created successfully');
+        return response()->redirectToRoute('product.index');
     }
 
     /**
@@ -92,10 +92,10 @@ class ProductController extends Controller
             'category_id' => ['required'],
             'product_code' => ['required', 'string', 'unique:products,product_code,' . $id],
             'product_name' => ['required', 'string'],
-            'price' => ['required'],
-            'qty' => ['required', 'min:1'],
-            'alert_qty' => ['required', 'min:0'],
-            'note' => ['nullable', 'max:1000'],
+            'product_quantity' => ['required', 'min:1'],
+            'product_price' => ['required', 'string'],
+            'alert_quantity' => ['required', 'min:0'],
+            'product_note' => ['nullable', 'max:1000'],
         ]);
 
         try {
@@ -106,16 +106,16 @@ class ProductController extends Controller
             $products->category_id = $request->category_id;
             $products->product_code = $request->product_code;
             $products->product_name = $request->product_name;
-            $products->price = $request->price;
-            $products->qty = $request->qty;
-            $products->alert_qty = $request->alert_qty;
-            $products->note = $request->note;
+            $products->product_quantity = $request->product_quantity;
+            $products->product_price = $request->product_price;
+            $products->alert_quantity = $request->alert_quantity;
+            $products->product_note = $request->product_note;
 
             $products->save();
 
             DB::commit();
 
-            return response()->redirectToRoute('product.index')->with('success', 'Product updated successfully');
+            return response()->redirectToRoute('product.index');
         } catch (\Throwable $th) {
             DB::rollBack();
             Log::error($th);
@@ -135,7 +135,7 @@ class ProductController extends Controller
             $products->delete();
 
             DB::commit();
-            return response()->redirectToRoute('product.index')->with('success', 'Product deleted successfully');
+            return response()->redirectToRoute('product.index');
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;

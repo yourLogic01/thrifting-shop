@@ -15,10 +15,10 @@
       <div class="form-group">
         <label>Product Count</label>
         <select wire:model.live="showCount" class="form-control">
-          <option value="9">9 Products</option>
-          <option value="15">15 Products</option>
-          <option value="21">21 Products</option>
-          <option value="30">30 Products</option>
+          <option value="6">6 Products</option>
+          <option value="12">12 Products</option>
+          <option value="24">24 Products</option>
+          <option value="50">50 Products</option>
           <option value="">All Products</option>
         </select>
       </div>

@@ -22,15 +22,14 @@
           </div>
           <div class="card-body">
             <div class="row mb-4">
-              <div class="col-sm-4 mb-3 mb-md-0">
+              <div class="col-sm-6 mb-3 mb-md-0">
                 <h5 class="mb-2 border-bottom pb-2">Company Info:</h5>
-                <div><strong>{{ $company_name }}</strong></div>
-                <div>{{ $company_address }}</div>
-                <div>Email: {{ $company_email }}</div>
-                <div>Phone: {{ $company_phone }}</div>
+                <div><strong>Thrifting Shop</strong></div>
+                <div>Email: thriftingshop99@gmail.com</div>
+                <div>Phone: 085717028487</div>
               </div>
 
-              <div class="col-sm-4 mb-3 mb-md-0">
+              <div class="col-sm-6 mb-3 mb-md-0">
                 <h5 class="mb-2 border-bottom pb-2">Invoice Info:</h5>
                 <div>Invoice: <strong>INV/{{ $sale->reference }}</strong></div>
                 <div>Date: {{ \Carbon\Carbon::parse($sale->date)->format('d M, Y') }}</div>
@@ -41,7 +40,6 @@
                   Payment Status: <strong>{{ $sale->payment_status }}</strong>
                 </div>
               </div>
-
             </div>
 
             <div class="table-responsive-sm">
@@ -49,10 +47,9 @@
                 <thead>
                   <tr>
                     <th class="align-middle">Product</th>
-                    <th class="align-middle">Net Unit Price</th>
+                    <th class="align-middle">Unit Price</th>
                     <th class="align-middle">Quantity</th>
-                    <th class="align-middle">Discount</th>
-                    <th class="align-middle">Sub Total</th>
+                    <th class="align-middle">Total Amount</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -65,18 +62,16 @@
                         </span>
                       </td>
 
-                      <td class="align-middle">{{ $item->unit_price }}</td>
+                      <td class="align-middle">
+                        {{ format_currency($item->unit_price) }}
+                      </td>
 
                       <td class="align-middle">
                         {{ $item->quantity }}
                       </td>
 
                       <td class="align-middle">
-                        {{ $item->product_discount_amount }}
-                      </td>
-
-                      <td class="align-middle">
-                        {{ $item->sub_total }}
+                        {{ format_currency($item->sub_total) }}
                       </td>
                     </tr>
                   @endforeach
@@ -88,12 +83,16 @@
                 <table class="table">
                   <tbody>
                     <tr>
-                      <td class="left"><strong>Discount ({{ $sale->discount_percentage }}%)</strong></td>
-                      <td class="right">{{ $sale->discount_amount }}</td>
+                      <td class="left"><strong>Total Amount</strong></td>
+                      <td class="right"><strong>{{ format_currency($sale->total_amount) }}</strong></td>
                     </tr>
                     <tr>
-                      <td class="left"><strong>Grand Total</strong></td>
-                      <td class="right"><strong>{{ $sale->total_amount }}</strong></td>
+                      <td class="left"><strong>Paid Amount</strong></td>
+                      <td class="right"><strong>{{ format_currency($sale->paid_amount) }}</strong></td>
+                    </tr>
+                    <tr>
+                      <td class="left"><strong>Due Amount</strong></td>
+                      <td class="right"><strong>{{ format_currency($sale->due_amount) }}</strong></td>
                     </tr>
                   </tbody>
                 </table>

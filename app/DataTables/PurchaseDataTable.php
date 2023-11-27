@@ -23,8 +23,8 @@ class PurchaseDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('sub_total', function ($data) {
-                return format_currency($data->sub_total);
+            ->addColumn('total_amount', function ($data) {
+                return format_currency($data->total_amount);
             })
             ->addColumn('paid_amount', function ($data) {
                 return format_currency($data->paid_amount);
@@ -37,6 +37,9 @@ class PurchaseDataTable extends DataTable
             })
             ->addColumn('payment_method', function ($data) {
                 return view('purchases.includes.payment-method', ['data' => $data]);
+            })
+            ->addColumn('payment_status', function ($data) {
+                return view('purchases.includes.payment-status', ['data' => $data]);
             })
             ->addColumn('action', function ($data) {
                 return view('purchases.includes.actions', ['data' => $data]);
@@ -91,7 +94,7 @@ class PurchaseDataTable extends DataTable
             Column::computed('status')
                 ->className('text-center align-middle'),
 
-            Column::computed('sub_total')
+            Column::computed('total_amount')
                 ->className('text-center align-middle'),
 
             Column::computed('paid_amount')
@@ -101,6 +104,9 @@ class PurchaseDataTable extends DataTable
                 ->className('text-center align-middle'),
 
             Column::computed('payment_method')
+                ->className('text-center align-middle'),
+
+            Column::computed('payment_status')
                 ->className('text-center align-middle'),
 
             Column::computed('action')

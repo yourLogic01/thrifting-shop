@@ -24,36 +24,31 @@
             </div>
           @endif
 
+          @php
+            $total_amount = Cart::instance($cart_instance)->total();
+          @endphp
+          <input id="total_amount" type="hidden" name="total_amount" value="{{ $total_amount }}">
+
           <div class="row">
             <div class="col-lg-7">
-              <input type="hidden" value="{{ $customer_id }}" name="customer_id">
-              <input type="hidden" value="{{ $global_tax }}" name="tax_percentage">
-              <input type="hidden" value="{{ $global_discount }}" name="discount_percentage">
-              <input type="hidden" value="{{ $shipping }}" name="shipping_amount">
-
               <div class="form-row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="total_amount">Total Amount <span class="text-danger">*</span></label>
-                    <input id="total_amount" type="text" class="form-control" name="total_amount"
-                      value="{{ $total_amount }}" readonly required>
+                    <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
+                    <select class="form-control" name="payment_method" id="payment_method" required>
+                      <option value="Cash">Cash</option>
+                      <option value="Transfer">Bank Transfer</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label for="paid_amount">Received Amount <span class="text-danger">*</span></label>
-                    <input id="paid_amount" type="text" class="form-control" name="paid_amount"
-                      value="{{ $total_amount }}" required>
+                    <input id="paid_amount" type="text" class="form-control" name="paid_amount" required>
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
-                <select class="form-control" name="payment_method" id="payment_method" required>
-                  <option value="Cash">Cash</option>
-                  <option value="Bank Transfer">Bank Transfer</option>
-                </select>
-              </div>
+
               <div class="form-group">
                 <label for="note">Note (Optional)</label>
                 <textarea name="note" id="note" rows="5" class="form-control"></textarea>
@@ -70,17 +65,13 @@
                       </span>
                     </td>
                   </tr>
-                  <tr>
-                    <th>Discount ({{ $global_discount }}%)</th>
-                    <td>(-) {{ Cart::instance($cart_instance)->discount() }}</td>
-                  </tr>
                   <tr class="text-primary">
                     <th>Total Amount</th>
                     @php
-                      $total_amount = Cart::instance($cart_instance)->total() - (float) $discount;
+                      $totalPrice = Cart::instance($cart_instance)->total();
                     @endphp
                     <th>
-                      (=) {{ $total_amount }}
+                      (=) {{ format_currency($totalPrice) }}
                     </th>
                   </tr>
                 </table>

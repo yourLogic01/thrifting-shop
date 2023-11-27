@@ -3,7 +3,6 @@
 namespace App\DataTables;
 
 use App\Models\Sale;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -24,16 +23,19 @@ class SalesDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('total_amount', function ($data) {
-                return $data->total_amount;
+                return format_currency($data->total_amount);
             })
             ->addColumn('paid_amount', function ($data) {
-                return $data->paid_amount;
+                return format_currency($data->paid_amount);
             })
             ->addColumn('due_amount', function ($data) {
-                return $data->due_amount;
+                return format_currency($data->due_amount);
             })
             ->addColumn('status', function ($data) {
                 return view('sales.includes.status', ['data' => $data]);
+            })
+            ->addColumn('payment_method', function ($data) {
+                return view('sales.includes.payment-method', ['data' => $data]);
             })
             ->addColumn('payment_status', function ($data) {
                 return view('sales.includes.payment-status', ['data' => $data]);
@@ -47,7 +49,7 @@ class SalesDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(User $model): QueryBuilder
+    public function query(Sale $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -62,13 +64,16 @@ class SalesDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
+            ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
+                                'tr' .
+                                <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([
-                Button::make('reset')
-                    ->text('<i class="bi bi-x-circle"></i> Reset'),
-                Button::make('reload')
-                    ->text('<i class="bi bi-arrow-repeat"></i> Reload')
+                Button::make('excel')
+                    ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
+                Button::make('print')
+                    ->text('<i class="bi bi-printer-fill"></i> Print'),
             ]);
     }
 
@@ -81,19 +86,22 @@ class SalesDataTable extends DataTable
             Column::make('reference')
                 ->className('text-center align-middle'),
 
-            Column::computed('status')->title('Status')
+            Column::computed('status')
                 ->className('text-center align-middle'),
 
-            Column::computed('total_amount')->title('Total Amount')
+            Column::computed('total_amount')
                 ->className('text-center align-middle'),
 
-            Column::computed('paid_amount')->title('Paid Amount')
+            Column::computed('paid_amount')
                 ->className('text-center align-middle'),
 
-            Column::computed('due_amount')->title('Due Amount')
+            Column::computed('due_amount')
                 ->className('text-center align-middle'),
 
-            Column::computed('payment_status')->title('Payment Status')
+            Column::computed('payment_method')
+                ->className('text-center align-middle'),
+
+            Column::computed('payment_status')
                 ->className('text-center align-middle'),
 
             Column::computed('action')

@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Sale;
 use App\Models\Product;
-use App\Models\Purchase;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class PurchaseDetail extends Model
+class SaleDetail extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-    protected $table = 'purchase_details';
+    protected $table = 'sale_details';
     protected $with = ['product'];
 
     public function product()
@@ -20,9 +20,9 @@ class PurchaseDetail extends Model
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
-    public function purchase()
+    public function sale()
     {
-        return $this->belongsTo(Purchase::class, 'purchase_id', 'id');
+        return $this->belongsTo(Sale::class, 'sale_id', 'id');
     }
 
     public function getPriceAttribute($value)
@@ -36,6 +36,16 @@ class PurchaseDetail extends Model
     }
 
     public function getSubTotalAttribute($value)
+    {
+        return $value / 100;
+    }
+
+    public function getProductDiscountAmountAttribute($value)
+    {
+        return $value / 100;
+    }
+
+    public function getProductTaxAmountAttribute($value)
     {
         return $value / 100;
     }

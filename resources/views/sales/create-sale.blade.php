@@ -20,18 +20,16 @@
       <div class="col-lg-7">
         <livewire:search-product />
 
-        {{-- TODO:Product List --}}
-        {{-- <livewire:product-list :categories="$product_categories" /> --}}
+        <livewire:product-list :categories="$product_categories" />
       </div>
       <div class="col-lg-5">
-        {{-- TODO:Checkout Sales --}}
-        {{-- <livewire:checkout :cart-instance="'sale'" /> --}}
+        <livewire:checkout :cart-instance="'sale'" />
       </div>
     </div>
   </div>
 @endsection
 
-{{-- @push('scripts')
+@push('scripts')
   <script src="{{ asset('js/jquery-mask-money.js') }}"></script>
   <script>
     $(document).ready(function() {
@@ -39,16 +37,16 @@
         $('#checkoutModal').modal('show');
 
         $('#paid_amount').maskMoney({
-          prefix: '{{ settings()->currency->symbol }}',
-          thousands: '{{ settings()->currency->thousand_separator }}',
-          decimal: '{{ settings()->currency->decimal_separator }}',
+          prefix: 'Rp. ',
+          thousands: '.',
+          decimal: ',',
           allowZero: false,
         });
 
         $('#total_amount').maskMoney({
-          prefix: '{{ settings()->currency->symbol }}',
-          thousands: '{{ settings()->currency->thousand_separator }}',
-          decimal: '{{ settings()->currency->decimal_separator }}',
+          prefix: 'Rp. ',
+          thousands: '.',
+          decimal: ',',
           allowZero: true,
         });
 
@@ -64,4 +62,4 @@
       });
     });
   </script>
-@endpush --}}
+@endpush

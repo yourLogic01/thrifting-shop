@@ -22,10 +22,10 @@
         <thead class="thead-dark">
           <tr>
             <th class="align-middle">Product</th>
-            <th class="align-middle text-center">Net Price</th>
+            <th class="align-middle text-center">Unit Price</th>
             <th class="align-middle text-center">Stock</th>
             <th class="align-middle text-center">Quantity</th>
-            <th class="align-middle text-center">Total Product</th>
+            <th class="align-middle text-center">Total Price</th>
             <th class="align-middle text-center">Action</th>
           </tr>
         </thead>
@@ -83,16 +83,12 @@
       <div class="table-responsive">
         <table class="table table-striped">
           <tr>
-            <th>Discount ({{ $global_discount }}%)</th>
-            <td>(-) {{ format_currency(Cart::instance($cart_instance)->discount()) }}</td>
-          </tr>
-          <tr>
             <th>Total Amount</th>
             @php
               $totalPrice = Cart::instance($cart_instance)->total();
             @endphp
             <th>
-              (=) {{ $totalPrice }}
+              (=) {{ format_currency($totalPrice) }}
             </th>
           </tr>
         </table>
@@ -100,15 +96,5 @@
     </div>
   </div>
 
-  <input type="hidden" name="sub_total" value="{{ $totalPrice }}">
-
-  <div class="form-row">
-    <div class="col-lg-4">
-      <div class="form-group">
-        <label for="discount">Discount (%)</label>
-        <input wire:model.blur="global_discount" type="number" class="form-control" name="discount" min="0"
-          max="100" value="{{ $global_discount }}" required>
-      </div>
-    </div>
-  </div>
+  <input type="hidden" name="total_amount" value="{{ $totalPrice }}">
 </div>

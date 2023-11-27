@@ -38,12 +38,13 @@ class DatabaseSeeder extends Seeder
 
         $product = Product::create([
             'category_id' => 1,
-            'product_code' => 'teh-01',
             'product_name' => 'Teh Pucuk',
-            'price' => 5000,
-            'qty' => 25,
-            'alert_qty' => 5,
-            'note' => 'Teh enak'
+            'product_code' => 'teh-01',
+            'product_quantity' => 25,
+            'product_price' => 5000,
+            'product_unit' => 'pcs',
+            'alert_quantity' => 5,
+            'product_note' => 'Teh enak'
         ]);
 
         $supplier = Supplier::create([

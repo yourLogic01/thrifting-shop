@@ -26,7 +26,6 @@
             <hr>
 
             <div class="table-responsive">
-              {{-- TODO:Integrate with datatables --}}
               {{ $dataTable->table() }}
             </div>
           </div>

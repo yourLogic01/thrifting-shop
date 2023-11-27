@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
-use App\Models\PurchaseDetail;
+use App\Models\SaleDetail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Purchase extends Model
+class Sale extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+    protected $table = 'sales';
 
-    public function purchaseDetails()
+    public function saleDetails()
     {
-        return $this->hasMany(PurchaseDetail::class, 'purchase_id', 'id');
+        return $this->hasMany(SaleDetail::class, 'sale_id', 'id');
     }
 
     public static function boot()
@@ -22,8 +23,8 @@ class Purchase extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $number = Purchase::max('id') + 1;
-            $model->reference = make_reference_id('PR', $number);
+            $number = Sale::max('id') + 1;
+            $model->reference = make_reference_id('SL', $number);
         });
     }
 

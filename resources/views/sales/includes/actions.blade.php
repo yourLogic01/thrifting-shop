@@ -18,7 +18,7 @@
               document.getElementById('destroy{{ $data->id }}').submit()
               }">
       <i class="bi bi-trash mr-2 text-danger" style="line-height: 1;"></i> Delete
-      <form id="destroy{{ $data->id }}" class="d-none" action="{{ route('sales.destroy', $data->id) }}"
+      <form id="destroy{{ $data->id }}" class="d-none" action="{{ route('sale.destroy', $data->id) }}"
         method="POST">
         @csrf
         @method('delete')

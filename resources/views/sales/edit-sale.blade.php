@@ -45,8 +45,7 @@
                 </div>
               </div>
 
-              {{-- TODO:Product Cart --}}
-              {{-- <livewire:product-cart :cartInstance="'sale'" :data="$sale" /> --}}
+              <livewire:product-cart :cartInstance="'sale'" :data="$sale" />
 
               <div class="form-row">
                 <div class="col-lg-4">
@@ -69,9 +68,9 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label for="paid_amount">Amount Received <span class="text-danger">*</span></label>
+                    <label for="paid_amount">Amount Paid <span class="text-danger">*</span></label>
                     <input id="paid_amount" type="text" class="form-control" name="paid_amount" required
-                      value="{{ $sale->paid_amount }}" readonly>
+                      value="{{ $sale->paid_amount }}">
                   </div>
                 </div>
               </div>
@@ -94,14 +93,14 @@
   </div>
 @endsection
 
-{{-- @push('page_scripts')
+@push('scripts')
   <script src="{{ asset('js/jquery-mask-money.js') }}"></script>
   <script>
     $(document).ready(function() {
       $('#paid_amount').maskMoney({
-        prefix: '{{ settings()->currency->symbol }}',
-        thousands: '{{ settings()->currency->thousand_separator }}',
-        decimal: '{{ settings()->currency->decimal_separator }}',
+        prefix: 'Rp. ',
+        thousands: '.',
+        decimal: ',',
         allowZero: true,
       });
 
@@ -113,4 +112,4 @@
       });
     });
   </script>
-@endpush --}}
+@endpush

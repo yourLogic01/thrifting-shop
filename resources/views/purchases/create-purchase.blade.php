@@ -57,7 +57,6 @@
                 </div>
               </div>
 
-              {{-- TODO: Product Cart --}}
               <livewire:product-cart :cartInstance="'purchase'" />
 
               <div class="form-row">
@@ -65,8 +64,9 @@
                   <div class="form-group">
                     <label for="status">Status <span class="text-danger">*</span></label>
                     <select class="form-control" name="status" id="status" required>
-                      <option value="pending">Pending</option>
-                      <option value="completed">Completed</option>
+                      <option value="">--Select Status--</option>
+                      <option value="Pending">Pending</option>
+                      <option value="Completed">Completed</option>
                     </select>
                   </div>
                 </div>
@@ -75,8 +75,9 @@
                     <div class="form-group">
                       <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
                       <select class="form-control" name="payment_method" id="payment_method" required>
-                        <option value="cash">Cash</option>
-                        <option value="transfer">Bank Transfer</option>
+                        <option value="">--Select Payment Method--</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Transfer">Bank Transfer</option>
                       </select>
                     </div>
                   </div>

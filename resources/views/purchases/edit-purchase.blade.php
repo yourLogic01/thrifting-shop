@@ -24,7 +24,7 @@
           <div class="card-body">
             {{-- TODO:Integrate with sweetalert --}}
             {{-- @include('utils.alerts') --}}
-            <form id="purchase-form" action="{{ route('purchases.update', ['purchase' => $purchase->id]) }}" method="POST">
+            <form id="purchase-form" action="{{ route('purchases.update', $purchase) }}" method="POST">
               @csrf
               @method('patch')
               <div class="form-row">
@@ -41,12 +41,13 @@
                       <label for="supplier_id">Supplier <span class="text-danger">*</span></label>
                       <select class="form-control" name="supplier_id" id="supplier_id" required>
                         <option value="">--Select Supplier--</option>
-                        @foreach ($suppliers as $individualSupplier)
-                            <option value="{{ $individualSupplier->id }}" {{ $purchase->supplier_id == $individualSupplier->id ? 'selected' : '' }}>
-                                {{ $individualSupplier->supplier_name }}
-                            </option>
+                        @foreach ($suppliers as $supplier)
+                          <option value="{{ $supplier->id }}"
+                            {{ $purchase->supplier_id == $supplier->id ? 'selected' : '' }}>
+                            {{ $supplier->supplier_name }}
+                          </option>
                         @endforeach
-                    </select>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -59,8 +60,8 @@
                   </div>
                 </div>
               </div>
-              {{-- TODO:Product Cart --}}
-              {{-- <livewire:product-cart :cartInstance="'purchase'" :data="$purchase" /> --}}
+
+              <livewire:product-cart :cartInstance="'purchase'" :data="$purchase" />
 
               <div class="form-row">
                 <div class="col-lg-4">
@@ -68,7 +69,6 @@
                     <label for="status">Status <span class="text-danger">*</span></label>
                     <select class="form-control" name="status" id="status" required>
                       <option {{ $purchase->status == 'Pending' ? 'selected' : '' }} value="Pending">Pending</option>
-                      <option {{ $purchase->status == 'Ordered' ? 'selected' : '' }} value="Ordered">Ordered</option>
                       <option {{ $purchase->status == 'Completed' ? 'selected' : '' }} value="Completed">Completed
                       </option>
                     </select>
@@ -79,7 +79,7 @@
                     <div class="form-group">
                       <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
                       <input type="text" class="form-control" name="payment_method" required
-                        value="{{ $purchase->payment_method }}">
+                        value="{{ $purchase->payment_method }}" readonly>
                     </div>
                   </div>
                 </div>
@@ -109,3 +109,24 @@
     </div>
   </div>
 @endsection
+
+@push('scripts')
+  <script src="{{ asset('js/jquery-mask-money.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+      $('#paid_amount').maskMoney({
+        prefix: 'Rp.',
+        thousands: '.',
+        decimal: ',',
+        allowZero: true,
+      });
+
+      $('#paid_amount').maskMoney('mask');
+
+      $('#purchase-form').submit(function() {
+        var paid_amount = $('#paid_amount').maskMoney('unmasked')[0];
+        $('#paid_amount').val(paid_amount);
+      });
+    });
+  </script>
+@endpush

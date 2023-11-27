@@ -32,19 +32,19 @@
                 </tr>
                 <tr>
                   <th>Product Price</th>
-                  <td>{{ format_currency($product->price) }}</td>
+                  <td>{{ format_currency($product->product_price) }}</td>
                 </tr>
                 <tr>
                   <th>Quantity</th>
-                  <td>{{ $product->qty }} Pcs</td>
+                  <td>{{ $product->product_quantity }} {{ $product->product_unit }}</td>
                 </tr>
                 <tr>
                   <th>Alert Quantity</th>
-                  <td>{{ $product->alert_qty }}</td>
+                  <td>{{ $product->alert_quantity }}</td>
                 </tr>
                 <tr>
                   <th>Note</th>
-                  <td>{{ $product->note }}</td>
+                  <td>{{ $product->product_note }}</td>
                 </tr>
               </table>
             </div>
