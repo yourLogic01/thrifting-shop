@@ -115,4 +115,3 @@ Route::resource('users', UserController::class)->except('show')->names([
 // User Profile Route
 Route::get('user-profile', [ProfileController::class, 'editProfile'])->name('profile.index');
 Route::patch('user-profile/{id}', [ProfileController::class, 'updateProfile'])->name('profile.updateProfile');
-Route::patch('user-profile', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');

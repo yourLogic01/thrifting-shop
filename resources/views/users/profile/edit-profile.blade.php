@@ -18,62 +18,57 @@
         <h3>Hello, <span class="text-primary">{{ auth()->user()->name }}</span></h3>
         <p class="font-italic">Change your profile information & password from here...</p>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
             <form action="/user-profile/{{ auth()->user()->id }}" method="post">
               @csrf
               @method('patch')
-              <div class="form-group">
-                <label for="name">Name <span class="text-danger">*</span></label>
-                <input class="form-control" type="text" name="name" required value="{{ auth()->user()->name }}">
-                @error('name')
-                  <p class="text-danger">{{ $message }}</p>
-                @enderror
+              <div class="form-row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="name">Name <span class="text-danger">*</span></label>
+                    <input class="form-control" type="text" name="name" required value="{{ auth()->user()->name }}">
+                    @error('name')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="email">Email <span class="text-danger">*</span></label>
+                    <input class="form-control" type="email" name="email" required value="{{ auth()->user()->email }}">
+                    @error('email')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="email">Email <span class="text-danger">*</span></label>
-                <input class="form-control" type="email" name="email" required value="{{ auth()->user()->email }}">
-                @error('email')
-                  <p class="text-danger">{{ $message }}</p>
-                @enderror
+              <div class="form-row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
+                    <textarea class="form-control" name="address" id="address" rows="3">{{ auth()->user()->address }}</textarea>
+                    @error('address')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="phone">Phone <span class="text-danger">*</span></label>
+                    <input class="form-control" type="number" name="phone" value="{{ auth()->user()->phone }}" required>
+                    @error('phone')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
+              
+              <div class="row">
+                <div class="form-group col-md-8">
                 <button type="submit" class="btn btn-primary">Update Profile <i class="bi bi-check"></i></button>
               </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-body">
-            <form action="{{ route('profile.updatePassword') }}" method="POST">
-              @csrf
-              @method('patch')
-              <div class="form-group">
-                <label for="current_password">Current Password <span class="text-danger">*</span></label>
-                <input type="password" class="form-control" name="current_password" required>
-                @error('current_password')
-                  <p class="text-danger">{{ $message }}</p>
-                @enderror
-              </div>
-              <div class="form-group">
-                <label for="password">New Password <span class="text-danger">*</span></label>
-                <input class="form-control" type="password" name="password" required>
-                @error('password')
-                  <p class="text-danger">{{ $message }}</p>
-                @enderror
-              </div>
-              <div class="form-group">
-                <label for="password_confirmation">Confirm Password <span class="text-danger">*</span></label>
-                <input class="form-control" type="password" name="password_confirmation" required>
-                @error('password_confirmation')
-                  <p class="text-danger">{{ $message }}</p>
-                @enderror
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary">Update Password <i class="bi bi-check"></i></button>
               </div>
             </form>
           </div>

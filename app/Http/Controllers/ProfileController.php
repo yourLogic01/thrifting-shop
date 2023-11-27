@@ -17,6 +17,8 @@ class ProfileController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
         ]);
 
         $user = auth()->user();
@@ -24,32 +26,12 @@ class ProfileController extends Controller
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
+            'address' => $request->address,
+            'phone' => $request->phone,
         ]); 
 
         toast('Profile updated successfully!','success');
         return redirect()->route('profile.index');
     }
 
-    public function updatePassword(Request $request)
-    {
-        $request->validate([
-            'current_password' => 'required',
-            'password' => 'required|min:8|confirmed',
-        ]);
-
-        $current_password = auth()->user()->password;
-        if(!Hash::check($request->current_password, $current_password)){
-            toast('Current password does not match!','error');
-            return redirect()->back();
-        }
-
-        $user = auth()->user();
-        
-        $user->update([
-            'password' => Hash::make($request->password),
-        ]); 
-
-        toast('Password updated successfully!','success');
-        return redirect()->route('profile.index');
-    }
 }
