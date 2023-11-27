@@ -46,9 +46,10 @@ class ProductController extends Controller
             'product_note' => ['nullable', 'max:1000'],
         ]);
 
+        $productCode = strtoupper($request->product_code);
         Product::query()->create([
             'category_id' => $request->category_id,
-            'product_code' => $request->product_code,
+            'product_code' => $productCode,
             'product_name' => $request->product_name,
             'product_quantity' => $request->product_quantity,
             'product_price' => $request->product_price,
