@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Purchase extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
-    protected $table = 'purchases';
 
     public function purchaseDetails()
     {

@@ -57,7 +57,6 @@
                 </div>
               </div>
 
-              {{-- TODO: Product Cart --}}
               <livewire:product-cart :cartInstance="'purchase'" />
 
               <div class="form-row">

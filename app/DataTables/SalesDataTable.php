@@ -34,6 +34,9 @@ class SalesDataTable extends DataTable
             ->addColumn('status', function ($data) {
                 return view('sales.includes.status', ['data' => $data]);
             })
+            ->addColumn('payment_method', function ($data) {
+                return view('sales.includes.payment-method', ['data' => $data]);
+            })
             ->addColumn('payment_status', function ($data) {
                 return view('sales.includes.payment-status', ['data' => $data]);
             })
@@ -93,6 +96,9 @@ class SalesDataTable extends DataTable
                 ->className('text-center align-middle'),
 
             Column::computed('due_amount')
+                ->className('text-center align-middle'),
+
+            Column::computed('payment_method')
                 ->className('text-center align-middle'),
 
             Column::computed('payment_status')

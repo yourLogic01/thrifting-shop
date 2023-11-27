@@ -42,9 +42,13 @@ class SaleController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
-            $due_amount = $request->total_amount - $request->paid_amount;
-            if ($due_amount == $request->total_amount) {
+            $due_amount = $request->paid_amount - $request->total_amount;
+            $unpaid = $due_amount - $due_amount * 2;
+
+            if ($unpaid == $request->total_amount) {
                 $payment_status = 'Unpaid';
+            } elseif ($due_amount < 0) {
+                $payment_status = 'Partial';
             } else {
                 $payment_status = 'Paid';
             }
@@ -132,9 +136,13 @@ class SaleController extends Controller
     public function update(Request $request, Sale $sale)
     {
         DB::transaction(function () use ($request, $sale) {
-            $due_amount = $request->total_amount - $request->paid_amount;
-            if ($due_amount == $request->total_amount) {
+            $due_amount = $request->paid_amount - $request->total_amount;
+            $unpaid = $due_amount - $due_amount * 2;
+
+            if ($unpaid == $request->total_amount) {
                 $payment_status = 'Unpaid';
+            } elseif ($due_amount < 0) {
+                $payment_status = 'Partial';
             } else {
                 $payment_status = 'Paid';
             }

@@ -38,26 +38,26 @@ class PurchaseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePurchaseRequest $request)
+    public function store(Request $request)
     {
-        DB::beginTransaction();
+        DB::transaction(function () use ($request) {
+            $due_amount = $request->paid_amount - $request->total_amount;
+            $unpaid = $due_amount - $due_amount * 2;
 
-        try {
-            $due_amount = $request->total_amount - $request->paid_amount;
-            if ($due_amount == $request->total_amount) {
+            if ($unpaid == $request->total_amount) {
                 $payment_status = 'Unpaid';
+            } elseif ($due_amount < 0) {
+                $payment_status = 'Partial';
             } else {
                 $payment_status = 'Paid';
             }
 
-            $supplier = Supplier::find($request->supplier_id);
-
-            $purchase = DB::table('purchases')->insertGetId([
+            $purchase = Purchase::create([
                 'date' => $request->date,
                 'supplier_id' => $request->supplier_id,
-                'supplier_name' => $supplier->supplier_name,
-                'total_amount' => $request->total_amount * 100,
+                'supplier_name' => Supplier::findOrFail($request->supplier_id)->supplier_name,
                 'paid_amount' => $request->paid_amount * 100,
+                'total_amount' => $request->total_amount * 100,
                 'due_amount' => $due_amount * 100,
                 'status' => $request->status,
                 'payment_status' => $payment_status,
@@ -67,7 +67,7 @@ class PurchaseController extends Controller
 
             foreach (Cart::instance('purchase')->content() as $cart_item) {
                 PurchaseDetail::create([
-                    'purchase_id' => $purchase,
+                    'purchase_id' => $purchase->id,
                     'product_id' => $cart_item->id,
                     'product_name' => $cart_item->name,
                     'product_code' => $cart_item->options->code,
@@ -86,31 +86,19 @@ class PurchaseController extends Controller
             }
 
             Cart::instance('purchase')->destroy();
+        });
 
-            DB::commit();
-
-            return redirect()->route('purchases.index')->with('success', 'Purchase created successfully.');
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return redirect()->route('purchases.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Purchase $purchase)
     {
-        $purchase = Purchase::with('products')->findOrFail($id);
-        $items = $purchase->items;
-        $supplier = $purchase->supplier;
+        $supplier = Supplier::findOrFail($purchase->supplier_id);
 
-        // Calculate discount, tax, shipping, and total amount
-        $discountAmount = $purchase->calculateDiscount(); // Implement the logic in your Purchase model
-        $taxAmount = $purchase->calculateTax(); // Implement the logic in your Purchase model
-        $shippingAmount = $purchase->shipping_amount; // Replace with your actual shipping amount
-        $totalAmount = $purchase->calculateTotalAmount(); // Implement the logic in your Purchase model
-
-        return view('purchases.show-purchase', compact('purchase', 'items', 'supplier', 'discountAmount', 'taxAmount', 'shippingAmount', 'totalAmount'));
+        return view('purchases.show-purchase', compact('purchase', 'supplier'));
     }
 
     /**
@@ -118,9 +106,31 @@ class PurchaseController extends Controller
      */
     public function edit(Purchase $purchase)
     {
-        $supplier = $purchase->supplier;
         $suppliers = Supplier::all();
-        return view('purchases.edit-purchase', compact('purchase', 'supplier', 'suppliers'));
+
+        $purchase_details = $purchase->purchaseDetails;
+
+        Cart::instance('purchase')->destroy();
+
+        $cart = Cart::instance('purchase');
+
+        foreach ($purchase_details as $purchase_detail) {
+            $cart->add([
+                'id'      => $purchase_detail->product_id,
+                'name'    => $purchase_detail->product_name,
+                'qty'     => $purchase_detail->quantity,
+                'price'   => $purchase_detail->price,
+                'weight'  => 1,
+                'options' => [
+                    'sub_total'   => $purchase_detail->sub_total,
+                    'code'        => $purchase_detail->product_code,
+                    'stock'       => Product::findOrFail($purchase_detail->product_id)->product_quantity,
+                    'unit_price'  => $purchase_detail->unit_price
+                ]
+            ]);
+        }
+
+        return view('purchases.edit-purchase', compact('purchase', 'suppliers'));
     }
 
     /**
@@ -128,18 +138,66 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, Purchase $purchase)
     {
-        $data = $request->validate([
-            'supplier_id' => 'required',
-            'date' => 'required',
-            'status' => 'required',
-            'payment_method' => 'required',
-            'paid_amount' => 'required',
-            'note' => 'required',
-        ]);
+        DB::transaction(function () use ($request, $purchase) {
+            $due_amount = $request->paid_amount - $request->total_amount;
+            $unpaid = $due_amount - $due_amount * 2;
 
-        $purchase->update($data);
+            if ($unpaid == $request->total_amount) {
+                $payment_status = 'Unpaid';
+            } elseif ($due_amount < 0) {
+                $payment_status = 'Partial';
+            } else {
+                $payment_status = 'Paid';
+            }
 
-        return redirect()->route('purchases.index')->with('success', 'Purchase updated successfully.');
+            foreach ($purchase->purchaseDetails as $purchase_detail) {
+                if ($purchase->status == 'Completed') {
+                    $product = Product::findOrFail($purchase_detail->product_id);
+                    $product->update([
+                        'product_quantity' => $product->product_quantity - $purchase_detail->quantity
+                    ]);
+                }
+                $purchase_detail->delete();
+            }
+
+            $purchase->update([
+                'date' => $request->date,
+                'reference' => $request->reference,
+                'supplier_id' => $request->supplier_id,
+                'supplier_name' => Supplier::findOrFail($request->supplier_id)->supplier_name,
+                'paid_amount' => $request->paid_amount * 100,
+                'total_amount' => $request->total_amount * 100,
+                'due_amount' => $due_amount * 100,
+                'status' => $request->status,
+                'payment_status' => $payment_status,
+                'payment_method' => $request->payment_method,
+                'note' => $request->note,
+            ]);
+
+            foreach (Cart::instance('purchase')->content() as $cart_item) {
+                PurchaseDetail::create([
+                    'purchase_id' => $purchase->id,
+                    'product_id' => $cart_item->id,
+                    'product_name' => $cart_item->name,
+                    'product_code' => $cart_item->options->code,
+                    'quantity' => $cart_item->qty,
+                    'price' => $cart_item->price * 100,
+                    'unit_price' => $cart_item->options->unit_price * 100,
+                    'sub_total' => $cart_item->options->sub_total * 100,
+                ]);
+
+                if ($request->status == 'Completed') {
+                    $product = Product::findOrFail($cart_item->id);
+                    $product->update([
+                        'product_quantity' => $product->product_quantity + $cart_item->qty
+                    ]);
+                }
+            }
+
+            Cart::instance('purchase')->destroy();
+        });
+
+        return redirect()->route('purchases.index');
     }
 
     /**
@@ -149,6 +207,6 @@ class PurchaseController extends Controller
     {
         $purchase->delete();
 
-        return redirect()->route('purchases.index')->with('success', 'Purchase deleted successfully.');
+        return redirect()->route('purchases.index');
     }
 }

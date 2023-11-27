@@ -16,15 +16,15 @@ return new class extends Migration
             $table->date('date');
             $table->string('reference');
             $table->unsignedBigInteger('supplier_id')->nullable();
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->nullOnDelete();
             $table->string('supplier_name');
             $table->integer('total_amount');
             $table->integer('paid_amount');
             $table->integer('due_amount');
-            $table->enum('status', ['Pending', 'Completed']);
+            $table->string('status');
             $table->string('payment_status');
-            $table->enum('payment_method', ['Cash', 'Transfer']);
+            $table->string('payment_method');
             $table->text('note')->nullable();
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->nullOnDelete();
             $table->timestamps();
         });
     }
