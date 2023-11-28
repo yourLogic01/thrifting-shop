@@ -41,6 +41,7 @@ class ProductController extends Controller
             'product_code' => ['required', 'string', 'unique:products,product_code'],
             'product_name' => ['required', 'string'],
             'product_quantity' => ['required', 'min:1'],
+            'product_cost' => ['required', 'string'],
             'product_price' => ['required', 'string'],
             'alert_quantity' => ['required', 'min:0'],
             'product_note' => ['nullable', 'max:1000'],
@@ -52,6 +53,7 @@ class ProductController extends Controller
             'product_code' => $productCode,
             'product_name' => $request->product_name,
             'product_quantity' => $request->product_quantity,
+            'product_cost' => $request->product_cost,
             'product_price' => $request->product_price,
             'alert_quantity' => $request->alert_quantity,
             'product_note' => $request->product_note,
@@ -94,10 +96,12 @@ class ProductController extends Controller
             'product_code' => ['required', 'string', 'unique:products,product_code,' . $id],
             'product_name' => ['required', 'string'],
             'product_quantity' => ['required', 'min:1'],
+            'product_cost' => ['required', 'string'],
             'product_price' => ['required', 'string'],
             'alert_quantity' => ['required', 'min:0'],
             'product_note' => ['nullable', 'max:1000'],
         ]);
+        $productCode = strtoupper($request->product_code);
 
         try {
             DB::beginTransaction();
@@ -105,9 +109,10 @@ class ProductController extends Controller
             $products = Product::findOrFail($id);
 
             $products->category_id = $request->category_id;
-            $products->product_code = $request->product_code;
+            $products->product_code = $productCode;
             $products->product_name = $request->product_name;
             $products->product_quantity = $request->product_quantity;
+            $products->product_cost = $request->product_cost;
             $products->product_price = $request->product_price;
             $products->alert_quantity = $request->alert_quantity;
             $products->product_note = $request->product_note;

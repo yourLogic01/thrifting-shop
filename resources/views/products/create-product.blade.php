@@ -58,6 +58,15 @@
                     </div>
                   </div>
                 </div>
+              </div>
+
+              <div class="form-row mt-2">
+                <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="product_cost">Cost <span class="text-danger">*</span></label>
+                      <input id="product_cost" type="text" class="form-control" name="product_cost" required value="{{ old('product_cost') }}">
+                  </div>
+                </div>
 
                 <div class="col-md-6">
                   <div class="form-group">
@@ -113,6 +122,12 @@
   <script src="{{ asset('js/jquery-mask-money.js') }}"></script>
   <script>
     $(document).ready(function() {
+      $('#product_cost').maskMoney({
+        prefix: 'Rp.',
+        thousands: '.',
+        decimal: ',',
+      });
+
       $('#product_price').maskMoney({
         prefix: 'Rp.',
         thousands: '.',
@@ -120,7 +135,9 @@
       });
 
       $('#product-form').submit(function() {
+        var cost = $('#product_cost').maskMoney('unmasked')[0];
         var price = $('#product_price').maskMoney('unmasked')[0];
+        $('#product_cost').val(cost);
         $('#product_price').val(price);
       });
     });
