@@ -114,7 +114,8 @@ Route::resource('users', UserController::class)->except('show')->names([
   'edit' => 'user.edit',
   'update' => 'user.update',
   'destroy' => 'user.destroy',
-])->middleware('auth');
+])->middleware('owner');
+
 
 // User Profile Route
 Route::get('user-profile', [ProfileController::class, 'editProfile'])->name('profile.index')->middleware('auth');

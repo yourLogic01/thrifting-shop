@@ -41,6 +41,7 @@ class DatabaseSeeder extends Seeder
             'product_name' => 'Teh Pucuk',
             'product_code' => 'teh-01',
             'product_quantity' => 25,
+            'product_cost' => 3500,
             'product_price' => 5000,
             'product_unit' => 'pcs',
             'alert_quantity' => 5,
