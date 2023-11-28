@@ -16,7 +16,7 @@
         {{-- TODO:Integrate with sweetalert --}}
         {{-- @include('utils.alerts') --}}
         <h3>Hello, <span class="text-primary">{{ auth()->user()->name }}</span></h3>
-        <p class="font-italic">Change your profile information & password from here...</p>
+        <p class="font-italic">Change your profile information from here.</p>
       </div>
       <div class="col-lg-12">
         <div class="card">
@@ -37,7 +37,8 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label for="email">Email <span class="text-danger">*</span></label>
-                    <input class="form-control" type="email" name="email" required value="{{ auth()->user()->email }}">
+                    <input class="form-control" type="email" name="email" required
+                      value="{{ auth()->user()->email }}">
                     @error('email')
                       <p class="text-danger">{{ $message }}</p>
                     @enderror
@@ -47,7 +48,7 @@
               <div class="form-row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
+                    <label for="address" class="form-label">Address</label>
                     <textarea class="form-control" name="address" id="address" rows="3">{{ auth()->user()->address }}</textarea>
                     @error('address')
                       <p class="text-danger">{{ $message }}</p>
@@ -56,19 +57,20 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="phone">Phone <span class="text-danger">*</span></label>
-                    <input class="form-control" type="number" name="phone" value="{{ auth()->user()->phone }}" required>
+                    <label for="phone">Phone</label>
+                    <input class="form-control" type="number" name="phone" value="{{ auth()->user()->phone }}"
+                      required>
                     @error('phone')
                       <p class="text-danger">{{ $message }}</p>
                     @enderror
                   </div>
                 </div>
               </div>
-              
+
               <div class="row">
                 <div class="form-group col-md-8">
-                <button type="submit" class="btn btn-primary">Update Profile <i class="bi bi-check"></i></button>
-              </div>
+                  <button type="submit" class="btn btn-primary">Update Profile <i class="bi bi-check"></i></button>
+                </div>
               </div>
             </form>
           </div>

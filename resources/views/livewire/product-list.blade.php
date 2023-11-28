@@ -11,9 +11,9 @@
           </div>
         </div>
         @forelse($products as $product)
-          <div wire:click.prevent="selectProduct({{ $product }})" class="col-lg-4 col-md-6 col-xl-3"
+          <div wire:click.prevent="selectProduct({{ $product }})" class="col-lg-4 col-md-6 col-xl-4 mt-3"
             style="cursor: pointer;">
-            <div class="card border-0 shadow h-100">
+            <div class="card border-0 shadow h-100" style="min-width: 150px; background: #fafaf9;">
               <div class="position-relative mt-4">
                 <div class="badge badge-info mb-3 position-absolute" style="right:10px;top:-5px;">
                   Stock: {{ $product->product_quantity }}</div>

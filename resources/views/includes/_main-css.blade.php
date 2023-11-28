@@ -1,5 +1,3 @@
-{{-- Dropezone CSS --}}
-<link rel="stylesheet" href="{{ asset('css/dropzone.min.css') }}">
 {{-- CoreUI CSS --}}
 @vite('resources/sass/app.scss')
 {{-- CDN Datatables --}}
