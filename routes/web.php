@@ -46,6 +46,10 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'resetPasswordP
 // Home Route
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
+// Chart Route
+Route::get('/sales-purchases/chart-data', [HomeController::class, 'salesPurchasesChart'])->name('sales-purchases.chart');
+Route::get('/current-month/chart-data', [HomeController::class, 'currentMonthChart'])->name('current-month.chart');
+
 // Products Route
 Route::resource('products', ProductController::class)->names([
   'index' => 'product.index',
