@@ -40,7 +40,7 @@ Route::get('/sign-up', [RegisterController::class, 'index'])->name('register')->
 // Forgot Password Route
 Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password')->middleware('guest');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'forgotPasswordPost'])->name('forgot-password-post');
-Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'resetPassword'])->name('reset-password');
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'resetPassword'])->name('reset-password')->middleware('guest');
 Route::post('/reset-password', [ForgotPasswordController::class, 'resetPasswordPost'])->name('reset-password-post');
 
 // Home Route
@@ -55,7 +55,7 @@ Route::resource('products', ProductController::class)->names([
   'edit' => 'product.edit',
   'update' => 'product.update',
   'destroy' => 'product.destroy',
-]);
+])->middleware('auth');
 
 // Categories Route
 Route::resource('product-categories', CategoriesController::class)->except('show', 'create')->names([
@@ -64,7 +64,7 @@ Route::resource('product-categories', CategoriesController::class)->except('show
   'edit' => 'product-categories.edit',
   'update' => 'product-categories.update',
   'destroy' => 'product-categories.destroy',
-]);
+])->middleware('auth');
 
 // Purchases Route
 Route::resource('purchases', PurchaseController::class)->names([
@@ -75,7 +75,7 @@ Route::resource('purchases', PurchaseController::class)->names([
   'edit' => 'purchases.edit',
   'update' => 'purchases.update',
   'destroy' => 'purchases.destroy',
-]);
+])->middleware('auth');
 
 // Sales Route
 Route::resource('sales', SaleController::class)->names([
@@ -86,7 +86,7 @@ Route::resource('sales', SaleController::class)->names([
   'edit' => 'sale.edit',
   'update' => 'sale.update',
   'destroy' => 'sale.destroy',
-]);
+])->middleware('auth');
 
 // Suppliers Route
 Route::resource('suppliers', SupplierController::class)->names([
@@ -97,10 +97,10 @@ Route::resource('suppliers', SupplierController::class)->names([
   'edit' => 'suppliers.edit',
   'update' => 'suppliers.update',
   'destroy' => 'suppliers.destroy',
-]);
+])->middleware('auth');
 
 // Reports Route
-Route::get('/profit-loss-report', [ReportController::class, 'profitLossReport'])->name('profit-loss-report');
+Route::get('/profit-loss-report', [ReportController::class, 'profitLossReport'])->name('profit-loss-report')->middleware('auth');
 
 // Users Route
 Route::resource('users', UserController::class)->except('show')->names([
@@ -110,8 +110,8 @@ Route::resource('users', UserController::class)->except('show')->names([
   'edit' => 'user.edit',
   'update' => 'user.update',
   'destroy' => 'user.destroy',
-]);
+])->middleware('auth');
 
 // User Profile Route
-Route::get('user-profile', [ProfileController::class, 'editProfile'])->name('profile.index');
-Route::patch('user-profile/{id}', [ProfileController::class, 'updateProfile'])->name('profile.updateProfile');
+Route::get('user-profile', [ProfileController::class, 'editProfile'])->name('profile.index')->middleware('auth');
+Route::patch('user-profile/{id}', [ProfileController::class, 'updateProfile'])->name('profile.updateProfile')->middleware('auth');
