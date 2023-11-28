@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="phone">Phone <span class="text-danger">*</span></label>
+                    <label for="phone">Phone</label>
                     <input class="form-control" type="number" name="phone" required>
                   </div>
                 </div>
@@ -63,8 +63,8 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
-                    <textarea class="form-control" name="address" id="address" rows="3"></textarea>
+                    <label for="address" class="form-label">Address</label>
+                    <textarea class="form-control" name="address" id="address" rows="4"></textarea>
                   </div>
                 </div>
               </div>
