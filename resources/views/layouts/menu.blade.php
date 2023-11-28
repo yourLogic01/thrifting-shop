@@ -100,6 +100,7 @@
 </li>
 
 {{-- User managements sidebar navigation --}}
+@can('owner')
 <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('users*') ? 'c-show' : '' }}">
   <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
     <i class="c-sidebar-nav-icon bi bi-people" style="line-height: 1;"></i> User Management
@@ -119,3 +120,4 @@
     </li>
   </ul>
 </li>
+@endcan

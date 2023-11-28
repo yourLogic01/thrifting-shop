@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Html\Builder;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,5 +23,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Builder::useVite();
+
+        Gate::define('owner', function (User $user) {
+           return $user->position == 'owner';
+        });
     }
 }
