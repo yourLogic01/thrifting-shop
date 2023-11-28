@@ -31,6 +31,10 @@
                   <td>{{ $product->category->category_name }}</td>
                 </tr>
                 <tr>
+                  <th>Product Cost</th>
+                  <td>{{ format_currency($product->product_cost) }}</td>
+                </tr>
+                <tr>
                   <th>Product Price</th>
                   <td>{{ format_currency($product->product_price) }}</td>
                 </tr>
