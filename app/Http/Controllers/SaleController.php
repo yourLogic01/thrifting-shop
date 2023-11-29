@@ -55,7 +55,7 @@ class SaleController extends Controller
 
             $sale = Sale::create([
                 'date' => now()->format('Y-m-d'),
-                'reference' => 'PSL',
+                'reference' => 'SL',
                 'paid_amount' => $request->paid_amount * 100,
                 'total_amount' => $request->total_amount * 100,
                 'due_amount' => $due_amount * 100,

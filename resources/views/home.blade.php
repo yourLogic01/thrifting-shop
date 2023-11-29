@@ -90,5 +90,5 @@
   @endsection
 
   @push('scripts')
-    @vite('resources/js/chart-config.js')
+    @vite('resources/js/chart.js')
   @endpush
