@@ -137,6 +137,9 @@ class ProductCart extends Component
             $product_price = $new_price;
         } else {
             $this->unit_price[$product['id']] = $product['product_price'];
+            if ($this->cart_instance == 'purchase') {
+                $this->unit_price[$product['id']] = $product['product_cost'];
+            }
             $product_price = $this->unit_price[$product['id']];
         }
 
