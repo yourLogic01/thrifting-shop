@@ -48,7 +48,7 @@
                 </tr>
                 <tr>
                   <th>Note</th>
-                  <td>{{ $product->product_note }}</td>
+                  <td>{{ $product->product_note ? $product->product_note : 'No description or note.' }}</td>
                 </tr>
               </table>
             </div>

@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('product_code');
             $table->integer('quantity');
-            $table->integer('price');
-            $table->integer('unit_price');
-            $table->integer('sub_total');
+            $table->bigInteger('price');
+            $table->bigInteger('unit_price');
+            $table->bigInteger('sub_total');
             $table->foreign('purchase_id')->references('id')
                 ->on('purchases')->cascadeOnDelete();
             $table->foreign('product_id')->references('id')

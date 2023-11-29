@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('reference');
             $table->unsignedBigInteger('supplier_id')->nullable();
             $table->string('supplier_name');
-            $table->integer('total_amount');
-            $table->integer('paid_amount');
-            $table->integer('due_amount');
+            $table->bigInteger('total_amount');
+            $table->bigInteger('paid_amount');
+            $table->bigInteger('due_amount');
             $table->string('status');
             $table->string('payment_status');
             $table->string('payment_method');

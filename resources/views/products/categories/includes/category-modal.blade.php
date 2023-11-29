@@ -13,7 +13,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="category_code">Category Code <span class="text-danger">*</span></label>
-            <input class="form-control" type="text" name="category_code" required>
+            <input class="form-control text-uppercase" type="text" name="category_code" required>
           </div>
           <div class="form-group">
             <label for="category_name">Category Name <span class="text-danger">*</span></label>

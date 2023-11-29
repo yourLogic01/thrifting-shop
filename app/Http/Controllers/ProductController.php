@@ -41,8 +41,8 @@ class ProductController extends Controller
             'product_code' => ['required', 'string', 'unique:products,product_code'],
             'product_name' => ['required', 'string'],
             'product_quantity' => ['required', 'min:1'],
-            'product_cost' => ['required', 'string'],
-            'product_price' => ['required', 'string'],
+            'product_cost' => ['required'],
+            'product_price' => ['required'],
             'alert_quantity' => ['required', 'min:0'],
             'product_note' => ['nullable', 'max:1000'],
         ]);
@@ -96,8 +96,8 @@ class ProductController extends Controller
             'product_code' => ['required', 'string', 'unique:products,product_code,' . $id],
             'product_name' => ['required', 'string'],
             'product_quantity' => ['required', 'min:1'],
-            'product_cost' => ['required', 'string'],
-            'product_price' => ['required', 'string'],
+            'product_cost' => ['required'],
+            'product_price' => ['required'],
             'alert_quantity' => ['required', 'min:0'],
             'product_note' => ['nullable', 'max:1000'],
         ]);

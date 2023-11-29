@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('product_code')->unique();
             $table->integer('product_quantity');
-            $table->integer('product_cost');
-            $table->integer('product_price');
+            $table->bigInteger('product_cost');
+            $table->bigInteger('product_price');
             $table->string('product_unit')->default('pcs');
             $table->integer('alert_quantity');
             $table->text('product_note')->nullable();

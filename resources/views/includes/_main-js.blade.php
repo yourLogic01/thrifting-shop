@@ -3,6 +3,9 @@
   integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 {{-- CoreUi JS --}}
 @vite('resources/js/app.js')
+
+@vite('resources/js/chart.js')
+
 {{-- CDN Datatables --}}
 <script defer
   src="https://cdn.datatables.net/v/bs4/jszip-3.10.1/dt-1.13.5/b-2.4.1/b-html5-2.4.1/b-print-2.4.1/sl-1.7.0/datatables.min.js">
