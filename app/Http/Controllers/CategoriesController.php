@@ -27,9 +27,10 @@ class CategoriesController extends Controller
             'category_code' => 'required|unique:categories,category_code',
             'category_name' => 'required',
         ]);
+        $categoryCode = strtoupper($request->category_code);
 
         Category::query()->create([
-            'category_code' => $request->category_code,
+            'category_code' => $categoryCode,
             'category_name' => $request->category_name,
         ]);
 
@@ -57,12 +58,13 @@ class CategoriesController extends Controller
             'category_code' => 'required|unique:categories,category_code,' . $id,
             'category_name' => 'required',
         ]);
+        $categoryCode = strtoupper($request->category_code);
 
         try {
             DB::beginTransaction();
 
             Category::findOrFail($id)->update([
-                'category_code' => $request->category_code,
+                'category_code' => $categoryCode,
                 'category_name' => $request->category_name,
             ]);
 
