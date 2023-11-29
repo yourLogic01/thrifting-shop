@@ -86,7 +86,7 @@
 </li>
 
 {{-- Supplier sidebar navigation --}}
-<li class="c-sidebar-nav-item {{ request()->routeIs('suppliers.*') ? 'c-active' : '' }}">
+<li class="c-sidebar-nav-item {{ request()->routeIs('suppliers*') ? 'c-active' : '' }}">
   <a class="c-sidebar-nav-link" href="{{ route('suppliers.index') }}">
     <i class="c-sidebar-nav-icon bi bi-people-fill" style="line-height: 1;"></i> Supplier
   </a>
@@ -101,23 +101,23 @@
 
 {{-- User managements sidebar navigation --}}
 @can('owner')
-<li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('users*') ? 'c-show' : '' }}">
-  <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
-    <i class="c-sidebar-nav-icon bi bi-people" style="line-height: 1;"></i> User Management
-  </a>
-  <ul class="c-sidebar-nav-dropdown-items">
-    <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link {{ request()->routeIs('user.create') ? 'c-active' : '' }}"
-        href="{{ route('user.create') }}">
-        <i class="c-sidebar-nav-icon bi bi-person-plus" style="line-height: 1;"></i> Create User
-      </a>
-    </li>
-    <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link {{ request()->routeIs('user.index') ? 'c-active' : '' }}"
-        href="{{ route('user.index') }}">
-        <i class="c-sidebar-nav-icon bi bi-person-lines-fill" style="line-height: 1;"></i> All Users
-      </a>
-    </li>
-  </ul>
-</li>
+  <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('users*') ? 'c-show' : '' }}">
+    <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+      <i class="c-sidebar-nav-icon bi bi-people" style="line-height: 1;"></i> User Management
+    </a>
+    <ul class="c-sidebar-nav-dropdown-items">
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link {{ request()->routeIs('user.create') ? 'c-active' : '' }}"
+          href="{{ route('user.create') }}">
+          <i class="c-sidebar-nav-icon bi bi-person-plus" style="line-height: 1;"></i> Create User
+        </a>
+      </li>
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link {{ request()->routeIs('user.index') ? 'c-active' : '' }}"
+          href="{{ route('user.index') }}">
+          <i class="c-sidebar-nav-icon bi bi-person-lines-fill" style="line-height: 1;"></i> All Users
+        </a>
+      </li>
+    </ul>
+  </li>
 @endcan

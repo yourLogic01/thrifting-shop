@@ -53,7 +53,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="address">Address</label>
+                    <label for="address">Address <span class="text-danger">*</span></label>
                     <textarea class="form-control" name="address" id="address" rows="3">{{ $supplier->address }}</textarea>
                   </div>
                 </div>

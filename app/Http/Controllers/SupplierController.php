@@ -47,13 +47,6 @@ class SupplierController extends Controller
      */
     public function show(string $id)
     {
-        // $supplier = Supplier::find($id);
-
-        // if (!$supplier) {
-        //     return redirect()->route('supplier.index')->with('error', 'Supplier not found.');
-        // }
-
-        // return view('suppliers.show-supplier', compact('supplier'));
         $supplier = Supplier::findOrFail($id);
 
         return view('suppliers.show-supplier', compact('supplier'));

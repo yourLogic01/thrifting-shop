@@ -78,8 +78,18 @@
                 </tbody>
               </table>
             </div>
+
             <div class="row">
-              <div class="col-lg-4 col-sm-5 ml-md-auto">
+              <div class="col-lg-8 col-md-6 col-sm-6 d-flex flex-row justify-content-start p-4">
+                <div>
+                  <h5>Note : </h5>
+                </div>
+                <div class="px-2">
+                  <p>{{ $sale->note ? $sale->note : 'No description or note.' }}</p>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 col-sm-6 ml-md-auto" style="overflow-x:auto;">
                 <table class="table">
                   <tbody>
                     <tr>

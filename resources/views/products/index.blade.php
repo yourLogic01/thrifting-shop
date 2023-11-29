@@ -26,7 +26,7 @@
             <hr>
 
             <div class="table-responsive">
-              {{ $dataTable->table() }}
+              {!! $dataTable->table() !!}
             </div>
           </div>
         </div>
@@ -36,5 +36,5 @@
 @endsection
 
 @push('scripts')
-  {{ $dataTable->scripts() }}
+  {!! $dataTable->scripts() !!}
 @endpush
