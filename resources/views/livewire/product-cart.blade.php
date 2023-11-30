@@ -19,7 +19,7 @@
         </div>
       </div>
       <table class="table table-bordered">
-        <thead class="thead-dark">
+        <thead class="thead-dark head_color">
           <tr>
             <th class="align-middle">Product</th>
             <th class="align-middle text-center">Unit Price</th>

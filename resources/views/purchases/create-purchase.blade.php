@@ -88,7 +88,7 @@
                     <div class="input-group">
                       <input id="paid_amount" type="text" class="form-control" name="paid_amount" required>
                       <div class="input-group-append">
-                        <button id="getTotalAmount" class="btn btn-primary" type="button">
+                        <button id="getTotalAmount" class="btn btn_color" type="button">
                           <i class="bi bi-check-square"></i>
                         </button>
                       </div>
@@ -103,7 +103,7 @@
               </div>
 
               <div class="mt-5">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn_color">
                   Create Purchase <i class="bi bi-plus"></i>
                 </button>
               </div>

@@ -20,7 +20,7 @@
         <div class="card">
           <div class="card-body">
             <!-- Button trigger modal -->
-            <a href="{{ route('user.create') }}" class="btn btn-primary">
+            <a href="{{ route('user.create') }}" class="btn btn_color">
               Add User <i class="bi bi-plus"></i>
             </a>
 

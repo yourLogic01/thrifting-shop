@@ -1,8 +1,8 @@
 {{-- Logo Sidebar --}}
 <div
-  class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show {{ request()->routeIs('sale.create*') ? 'c-sidebar-minimized' : '' }}"
+  class="c-sidebar bg_sidebar_wrapper c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show {{ request()->routeIs('sale.create*') ? 'c-sidebar-minimized' : '' }}"
   id="sidebar">
-  <div class="c-sidebar-brand d-md-down-none">
+  <div class="c-sidebar-brand d-md-down-none bg_sidebar_header">
     <a href="/" class="c-sidebar-brand-full header_text text-uppercase">
       Thrifting Shop
     </a>
@@ -22,6 +22,6 @@
   </ul>
 
   {{-- Button minimized --}}
-  <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent"
+  <button class="c-sidebar-minimizer c-class-toggler bg_sidebar_bottom" type="button" data-target="_parent"
     data-class="c-sidebar-minimized"></button>
 </div>

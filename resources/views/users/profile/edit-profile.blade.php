@@ -69,7 +69,7 @@
 
               <div class="row">
                 <div class="form-group col-md-8">
-                  <button type="submit" class="btn btn-primary">Update Profile <i class="bi bi-check"></i></button>
+                  <button type="submit" class="btn btn_color">Update Profile <i class="bi bi-check"></i></button>
                 </div>
               </div>
             </form>

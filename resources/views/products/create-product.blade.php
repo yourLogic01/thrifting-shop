@@ -63,8 +63,9 @@
               <div class="form-row mt-2">
                 <div class="col-md-6">
                   <div class="form-group">
-                      <label for="product_cost">Cost <span class="text-danger">*</span></label>
-                      <input id="product_cost" type="text" class="form-control" name="product_cost" required value="{{ old('product_cost') }}">
+                    <label for="product_cost">Cost <span class="text-danger">*</span></label>
+                    <input id="product_cost" type="text" class="form-control" name="product_cost" required
+                      value="{{ old('product_cost') }}">
                   </div>
                 </div>
 
@@ -105,7 +106,7 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="form-group">
-                <button type="submit" class="btn btn-primary">Create Product <i class="bi bi-plus"></i></button>
+                <button type="submit" class="btn btn_color">Create Product <i class="bi bi-plus"></i></button>
               </div>
             </div>
           </div>

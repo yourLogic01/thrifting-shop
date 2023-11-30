@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary">Update <i class="bi bi-check"></i></button>
+          <button type="submit" class="btn btn_color">Update <i class="bi bi-check"></i></button>
         </div>
         </form>
       </div>
