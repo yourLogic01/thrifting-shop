@@ -59,7 +59,7 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="form-group">
-                <button class="btn btn-primary">Create Supplier <i class="bi bi-plus"></i></button>
+                <button class="btn btn_color">Create Supplier <i class="bi bi-plus"></i></button>
               </div>
             </div>
           </div>

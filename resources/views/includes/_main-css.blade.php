@@ -73,4 +73,62 @@
     text-decoration: none;
     color: #7dd3fc;
   }
+
+  .bg_sidebar_wrapper {
+    background: #374151;
+  }
+
+  .bg_sidebar_header,
+  .bg_sidebar_bottom {
+    background: #1f2937;
+  }
+
+  .bg_sidebar_home,
+  .bg_sidebar_products,
+  .bg_sidebar_purchases,
+  .bg_sidebar_sales,
+  .bg_sidebar_supplier,
+  .bg_sidebar_report,
+  .bg_sidebar_users {
+    font-weight: 600;
+    color: #f9fafb;
+  }
+
+  .c-sidebar-nav-link:hover {
+    background: rgba(234, 88, 12, 0.85) !important;
+    color: #f9fafb;
+  }
+
+  .c-active {
+    background: rgba(234, 88, 12, 0.9) !important;
+    color: #f9fafb;
+  }
+
+  .btn_color {
+    background: rgba(2, 132, 199, 1) !important;
+    color: #f9fafb !important;
+    transform: scale(1);
+    transition: .2s ease-in-out;
+  }
+
+  .btn_color:hover {
+    background: rgba(2, 132, 199, 0.85) !important;
+    color: #f9fafb !important;
+  }
+
+  .btn_color:active {
+    transform: scale(0.9);
+  }
+
+  .bg_primary {
+    background: #1e40af !important;
+  }
+
+  .bg_yellow {
+    background: #eab308 !important;
+  }
+
+  .bg_green {
+    background: #22c55e !important;
+  }
 </style>

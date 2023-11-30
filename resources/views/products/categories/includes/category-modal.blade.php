@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Create <i class="bi bi-plus"></i></button>
+          <button type="submit" class="btn btn_color">Create <i class="bi bi-plus"></i></button>
         </div>
       </form>
     </div>

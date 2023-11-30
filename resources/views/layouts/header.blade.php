@@ -12,7 +12,7 @@
 
 <ul class="c-header-nav ml-auto mr-4">
   <li class="c-header-nav-item mr-3">
-    <a class="btn btn-primary btn-pill {{ request()->routeIs('sale.create') ? 'disabled' : '' }}"
+    <a class="btn btn_color btn-pill {{ request()->routeIs('sale.create') ? 'disabled' : '' }}"
       href="{{ route('sale.create') }}">
       <i class="bi bi-cart mr-1"></i> POS System
     </a>

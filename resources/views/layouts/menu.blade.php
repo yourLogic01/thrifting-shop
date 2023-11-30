@@ -1,5 +1,5 @@
 {{-- Home sidebar navigation --}}
-<li class="c-sidebar-nav-item {{ request()->routeIs('home') ? 'c-active' : '' }}">
+<li class="c-sidebar-nav-item bg_sidebar_home {{ request()->routeIs('home') ? 'c-active' : '' }}">
   <a class="c-sidebar-nav-link" href="{{ route('home') }}">
     <i class="c-sidebar-nav-icon bi bi-house" style="line-height: 1;"></i> Home
   </a>
@@ -7,7 +7,7 @@
 
 {{-- Products sidebar navigation --}}
 <li
-  class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('products.*') || request()->routeIs('product-categories.*') ? 'c-show' : '' }}">
+  class="c-sidebar-nav-item c-sidebar-nav-dropdown bg_sidebar_products bg-sidebar-hover {{ request()->routeIs('products.*') || request()->routeIs('product-categories.*') ? 'c-show' : '' }}">
   <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
     <i class="c-sidebar-nav-icon bi bi-journal-bookmark" style="line-height: 1;"></i> Products
   </a>
@@ -36,7 +36,8 @@
 </li>
 
 {{-- Purchases sidebar navigation --}}
-<li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('purchases.*') ? 'c-show' : '' }}">
+<li
+  class="c-sidebar-nav-item c-sidebar-nav-dropdown bg_sidebar_purchases {{ request()->routeIs('purchases.*') ? 'c-show' : '' }}">
   <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
     <i class="c-sidebar-nav-icon bi bi-bag" style="line-height: 1;"></i> Purchases
   </a>
@@ -61,7 +62,8 @@
 </li>
 
 {{-- Sales sidebar navigation --}}
-<li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('sales.*') ? 'c-show' : '' }}">
+<li
+  class="c-sidebar-nav-item c-sidebar-nav-dropdown bg_sidebar_sales {{ request()->routeIs('sales.*') ? 'c-show' : '' }}">
   <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
     <i class="c-sidebar-nav-icon bi bi-receipt" style="line-height: 1;"></i> Sales
   </a>
@@ -86,14 +88,14 @@
 </li>
 
 {{-- Supplier sidebar navigation --}}
-<li class="c-sidebar-nav-item {{ request()->routeIs('suppliers*') ? 'c-active' : '' }}">
+<li class="c-sidebar-nav-item bg_sidebar_supplier {{ request()->routeIs('suppliers*') ? 'c-active' : '' }}">
   <a class="c-sidebar-nav-link" href="{{ route('suppliers.index') }}">
     <i class="c-sidebar-nav-icon bi bi-people-fill" style="line-height: 1;"></i> Supplier
   </a>
 </li>
 
 {{-- Reports sidebar navigation --}}
-<li class="c-sidebar-nav-item {{ request()->routeIs('profit-loss-report') ? 'c-active' : '' }}">
+<li class="c-sidebar-nav-item bg_sidebar_report {{ request()->routeIs('profit-loss-report') ? 'c-active' : '' }}">
   <a class="c-sidebar-nav-link" href="{{ route('profit-loss-report') }}">
     <i class="c-sidebar-nav-icon bi bi-graph-up" style="line-height: 1;"></i> Profit / Loss Report
   </a>
@@ -101,7 +103,8 @@
 
 {{-- User managements sidebar navigation --}}
 @can('owner')
-  <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('users*') ? 'c-show' : '' }}">
+  <li
+    class="c-sidebar-nav-item c-sidebar-nav-dropdown bg_sidebar_users {{ request()->routeIs('users*') ? 'c-show' : '' }}">
     <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
       <i class="c-sidebar-nav-icon bi bi-people" style="line-height: 1;"></i> User Management
     </a>

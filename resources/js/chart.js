@@ -10,10 +10,10 @@ $(document).ready(function () {
           label: 'Sales',
           data: response.sales.original.data,
           backgroundColor: [
-            '#6366F1',
+            '#2B3499',
           ],
           borderColor: [
-            '#6366F1',
+            '#2B3499',
           ],
           borderWidth: 1
         },
@@ -21,10 +21,10 @@ $(document).ready(function () {
           label: 'Purchases',
           data: response.purchases.original.data,
           backgroundColor: [
-            '#A5B4FC',
+            '#FF6C22',
           ],
           borderColor: [
-            '#A5B4FC',
+            '#FF6C22',
           ],
           borderWidth: 1
         }
@@ -50,12 +50,12 @@ $(document).ready(function () {
         datasets: [{
           data: [response.sales, response.purchases],
           backgroundColor: [
-            '#F59E0B',
-            '#0284C7',
+            '#2B3499',
+            '#F99417',
           ],
           hoverBackgroundColor: [
-            '#F59E0B',
-            '#0284C7',
+            '#2B3499',
+            '#F99417',
           ],
         }]
       },

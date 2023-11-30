@@ -17,7 +17,7 @@
       <div class="col-md-6 col-lg-4">
         <div class="card border-0">
           <div class="card-body p-0 d-flex align-items-center shadow-sm">
-            <div class="bg-gradient-primary p-4 mfe-3 rounded-left">
+            <div class="bg-gradient-primary bg_primary p-4 mfe-3 rounded-left">
               <i class="bi bi-wallet font-2xl"></i>
             </div>
             <div>
@@ -31,7 +31,7 @@
       <div class="col-md-6 col-lg-4">
         <div class="card border-0">
           <div class="card-body p-0 d-flex align-items-center shadow-sm">
-            <div class="bg-gradient-warning p-4 mfe-3 rounded-left">
+            <div class="bg-gradient-warning bg_yellow p-4 mfe-3 rounded-left">
               <i class="bi bi-basket font-2xl"></i>
             </div>
             <div>
@@ -45,7 +45,7 @@
       <div class="col-md-6 col-lg-4">
         <div class="card border-0">
           <div class="card-body p-0 d-flex align-items-center shadow-sm">
-            <div class="bg-gradient-info p-4 mfe-3 rounded-left">
+            <div class="bg-gradient-info bg_green p-4 mfe-3 rounded-left">
               <i class="bi bi-graph-up font-2xl"></i>
             </div>
             <div>

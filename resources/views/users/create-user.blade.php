@@ -75,7 +75,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <button type="submit" class="btn btn-primary">Create User <i class="bi bi-plus"></i></button>
+            <button type="submit" class="btn btn_color">Create User <i class="bi bi-plus"></i></button>
           </div>
         </div>
       </div>
