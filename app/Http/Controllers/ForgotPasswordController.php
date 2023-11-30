@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ForgotPasswordMail;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -21,28 +22,28 @@ class ForgotPasswordController extends Controller
 
     public function forgotPasswordPost(Request $request)
     {
-        // Validate email
-        $request->validate([
-            'email' => 'required|email|exists:users'
-        ]);
+        try {
+            // Validate email
+            $request->validate([
+                'email' => 'required|email|exists:users'
+            ]);
 
-        // Create token
-        $token = Str::random(32);
+            // Create token
+            $token = Str::random(32);
 
-        // create insert form
-        DB::table('password_reset_tokens')->insert([
-            'email' => $request->email,
-            'token' => $token,
-            'created_at' => Carbon::now()
-        ]);
+            // create insert form
+            DB::table('password_reset_tokens')->insert([
+                'email' => $request->email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]);
 
-        // Send email
-        Mail::send('auth.forgot-password.email', ['token' => $token], function ($message) use ($request) {
-            $message->to($request->email);
-            $message->subject('Reset Password');
-        });
+            Mail::to($request->email)->send(new ForgotPasswordMail($token));
 
-        return redirect()->to(route('forgot-password'))->with('success', 'We have send an email to reset password.');
+            return redirect()->to(route('forgot-password'))->with('success', 'We have send an email to reset password.');
+        } catch (\Exception $e) {
+            return redirect()->to(route('forgot-password'))->with('error', 'Something went wrong!');
+        }
     }
 
     public function resetPassword($token)
