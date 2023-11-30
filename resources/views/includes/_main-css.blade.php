@@ -99,7 +99,8 @@
     color: #f9fafb;
   }
 
-  .c-active {
+  .c-active,
+  .dropdown-item:active {
     background: rgba(234, 88, 12, 0.9) !important;
     color: #f9fafb;
   }
