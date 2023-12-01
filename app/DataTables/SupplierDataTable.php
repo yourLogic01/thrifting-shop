@@ -46,14 +46,8 @@ class SupplierDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
-            ->orderBy(1)
+            ->orderBy(4)
             ->selectStyleSingle();
-        // ->buttons([
-        //     Button::make('reset')
-        //         ->text('<i class="bi bi-x-circle"></i> Reset'),
-        //     Button::make('reload')
-        //         ->text('<i class="bi bi-arrow-repeat"></i> Reload')
-        // ]);
     }
 
     /**
@@ -75,6 +69,9 @@ class SupplierDataTable extends DataTable
                 ->exportable(false)
                 ->printable(false)
                 ->className('text-center align-middle'),
+
+            Column::make('created_at')
+                ->visible(false)
         ];
     }
 

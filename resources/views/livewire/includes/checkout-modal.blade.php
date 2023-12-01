@@ -44,7 +44,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label for="paid_amount">Received Amount <span class="text-danger">*</span></label>
-                    <input id="paid_amount" type="text" class="form-control" name="paid_amount" required>
+                    <input id="paid_amount" type="text" class="form-control" name="paid_amount" min="0">
                   </div>
                 </div>
               </div>

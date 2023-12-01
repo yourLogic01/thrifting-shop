@@ -45,21 +45,9 @@ class UserDataTable extends DataTable
             ->setTableId('user-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
-                                'tr' .
-                                <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
             //->dom('Bfrtip')
-            ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
-                                'tr' .
-                                <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
-            ->orderBy(3)
-            ->selectStyleSingle()
-            ->buttons([
-                Button::make('excel')
-                    ->text('<i class="bi bi-file-earmark-excel-fill"></i> Excel'),
-                Button::make('print')
-                    ->text('<i class="bi bi-printer-fill"></i> Print'),
-            ]);
+            ->orderBy(4)
+            ->selectStyleSingle();
     }
 
     /**
@@ -81,6 +69,10 @@ class UserDataTable extends DataTable
                 ->exportable(false)
                 ->printable(false)
                 ->className('text-center align-middle'),
+
+            Column::make('created_at')
+                ->visible(false)
+
         ];
     }
 

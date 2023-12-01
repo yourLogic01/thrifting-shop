@@ -35,6 +35,7 @@ class CategoriesDataTable extends DataTable
      */
     public function query(Category $model): QueryBuilder
     {
+        // return $model->newQuery();
         return $model->newQuery();
     }
 
@@ -51,7 +52,7 @@ class CategoriesDataTable extends DataTable
             ->dom("<'row'<'col-md-3'l><'col-md-5 mb-2'B><'col-md-4'f>> .
                                 'tr' .
                                 <'row'<'col-md-5'i><'col-md-7 mt-2'p>>")
-            ->orderBy(1)
+            ->orderBy(3)
             ->selectStyleSingle()
             ->buttons([
                 Button::make('excel')
@@ -76,6 +77,9 @@ class CategoriesDataTable extends DataTable
                 ->exportable(false)
                 ->printable(false)
                 ->addClass('text-center'),
+
+            Column::make('created_at')
+                ->visible(false)
         ];
     }
 
