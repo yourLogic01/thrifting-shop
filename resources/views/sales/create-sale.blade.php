@@ -13,10 +13,8 @@
 @section('content')
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        {{-- TODO:Integrate with sweetalert --}}
-        {{-- @include('utils.alerts') --}}
-      </div>
+      @include('utils.alerts')
+
       <div class="col-lg-7">
         <livewire:search-product />
 

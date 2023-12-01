@@ -16,11 +16,9 @@
       @csrf
       @method('patch')
       <div class="row">
-        <div class="col-lg-12">
-          {{-- TODO:Integrate with sweetalert --}}
-          {{-- @include('utils.alerts') --}}
-        </div>
         <div class="col-md-12">
+          @include('utils.alerts')
+
           <div class="card">
             <div class="card-body">
               <div class="form-row">

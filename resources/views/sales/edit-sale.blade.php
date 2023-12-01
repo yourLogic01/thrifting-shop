@@ -20,10 +20,10 @@
 
     <div class="row mt-4">
       <div class="col-md-12">
+        @include('utils.alerts')
+
         <div class="card">
           <div class="card-body">
-            {{-- TODO:Integrate with sweetalert --}}
-            {{-- @include('utils.alerts') --}}
             <form id="sale-form" action="{{ route('sale.update', $sale) }}" method="POST">
               @csrf
               @method('patch')
