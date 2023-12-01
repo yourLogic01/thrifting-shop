@@ -17,7 +17,7 @@
     <div class="container main">
       <div class="row">
         <div class="col-md-6 side-image">
-          <img src="{{ asset('images/login-image.jpg') }}" alt="Login Image">
+          <img src="{{ asset('images/login.jpg') }}" alt="Login Image">
         </div>
 
         <div class="col-md-6 right">

@@ -13,6 +13,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LandingPageController;
 
 // use App\Http\Controllers\OrganizeStockController;
 
@@ -26,6 +27,8 @@ use App\Http\Controllers\RegisterController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/welcome', [LandingPageController::class, 'index'])->name('welcome');
 
 // Login Controller
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
