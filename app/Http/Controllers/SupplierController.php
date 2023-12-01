@@ -38,6 +38,7 @@ class SupplierController extends Controller
 
         // Save the supplier to the database
         Supplier::create($data);
+        toast("Suplier Created Successfully", 'success');
 
         return redirect()->route('suppliers.index')->with('success', 'Supplier created successfully.');
     }
@@ -73,6 +74,7 @@ class SupplierController extends Controller
         ]);
 
         $supplier->update($data);
+        toast("Suplier Updated Successfully", 'success');
 
         return redirect()->route('suppliers.index')->with('success', 'Supplier updated successfully.');
     }
@@ -83,6 +85,7 @@ class SupplierController extends Controller
     public function destroy(Supplier $supplier)
     {
         $supplier->delete();
+        toast("Suplier Deleted Successfully", 'warning');
 
         return redirect()->route('suppliers.index')->with('success', 'Supplier deleted successfully.');
     }

@@ -58,7 +58,7 @@ class ProductController extends Controller
             'alert_quantity' => $request->alert_quantity,
             'product_note' => $request->product_note,
         ]);
-
+        toast("Product Created Successfully", 'success');
         return response()->redirectToRoute('product.index');
     }
 
@@ -120,7 +120,7 @@ class ProductController extends Controller
             $products->save();
 
             DB::commit();
-
+            toast("Product Updated Successfully", 'success');
             return response()->redirectToRoute('product.index');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -141,6 +141,7 @@ class ProductController extends Controller
             $products->delete();
 
             DB::commit();
+            toast("product Deleted Successfully", 'warning');
             return response()->redirectToRoute('product.index');
         } catch (\Throwable $th) {
             DB::rollBack();
