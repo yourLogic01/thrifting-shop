@@ -53,13 +53,19 @@ class SaleController extends Controller
                 $payment_status = 'Paid';
             }
 
+            if ($request->paid_amount < $request->total_amount) {
+                $status = 'Pending';
+            } else {
+                $status = 'Completed';
+            }
+
             $sale = Sale::create([
                 'date' => now()->format('Y-m-d'),
                 'reference' => 'SL',
                 'paid_amount' => $request->paid_amount * 100,
                 'total_amount' => $request->total_amount * 100,
                 'due_amount' => $due_amount * 100,
-                'status' => 'Completed',
+                'status' => $status,
                 'payment_status' => $payment_status,
                 'payment_method' => $request->payment_method,
                 'note' => $request->note,
