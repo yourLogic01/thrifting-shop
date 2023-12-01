@@ -85,7 +85,7 @@ class SaleController extends Controller
 
             Cart::instance('sale')->destroy();
         });
-
+        toast("Sale Created Successfully", 'success');
         return redirect()->route('sale.index');
     }
 
@@ -191,7 +191,7 @@ class SaleController extends Controller
 
             Cart::instance('sale')->destroy();
         });
-
+        toast("Sale Updated Successfully", 'success');
         return redirect()->route('sale.index');
     }
 
@@ -201,7 +201,7 @@ class SaleController extends Controller
     public function destroy(Sale $sale)
     {
         $sale->delete();
-
+        toast("Sale Deleted Successfully", 'warning');
         return redirect()->route('sale.index');
     }
 }

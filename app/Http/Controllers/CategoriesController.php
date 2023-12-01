@@ -7,6 +7,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class CategoriesController extends Controller
 {
@@ -33,6 +35,7 @@ class CategoriesController extends Controller
             'category_code' => $categoryCode,
             'category_name' => $request->category_name,
         ]);
+        toast("Category Created Successfully", 'success');
 
         return response()->redirectToRoute('product-categories.index')->with('success', 'Categories created successfully');
     }
@@ -69,7 +72,7 @@ class CategoriesController extends Controller
             ]);
 
             DB::commit();
-
+            toast("Category Updated Successfully", 'success');
             return response()->redirectToRoute('product-categories.index')->with('success', 'Categories updated successfully');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -90,7 +93,7 @@ class CategoriesController extends Controller
             $category->delete();
 
             DB::commit();
-
+            toast("Category Deleted Successfully", 'warning');
             return response()->redirectToRoute('product-categories.index')->with('success', 'Categories deleted successfully');
         } catch (\Throwable $th) {
             DB::rollBack();

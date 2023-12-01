@@ -53,7 +53,7 @@ class UserController extends Controller
         ]);
        
 
-        toast("User Created", 'success');
+        toast("User Created Successfully", 'success');
         return redirect()->route('user.index');
     }
 
@@ -96,7 +96,7 @@ class UserController extends Controller
             'phone' => $request->phone,
         ]);
 
-        toast("User Updated", 'success');
+        toast("User Updated Successfully", 'success');
         return redirect()->route('user.index');
     }
 
@@ -112,7 +112,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        toast("User Deleted", 'success');
+        toast("User Deleted Successfully", 'warning');
         return redirect()->route('user.index');
     }
 }

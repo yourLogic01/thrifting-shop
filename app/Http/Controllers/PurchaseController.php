@@ -87,7 +87,7 @@ class PurchaseController extends Controller
 
             Cart::instance('purchase')->destroy();
         });
-
+        toast("Purchase Created Successfully", 'success');
         return redirect()->route('purchases.index');
     }
 
@@ -196,7 +196,7 @@ class PurchaseController extends Controller
 
             Cart::instance('purchase')->destroy();
         });
-
+        toast("Purchase Updated Successfully", 'success');
         return redirect()->route('purchases.index');
     }
 
@@ -206,7 +206,7 @@ class PurchaseController extends Controller
     public function destroy(Purchase $purchase)
     {
         $purchase->delete();
-
+        toast("Purchase Deleted Successfully", 'warning');
         return redirect()->route('purchases.index');
     }
 }
