@@ -17,7 +17,7 @@
     <div class="container main">
       <div class="row">
         <div class="col-md-6 side-image">
-          <img src="{{ asset('images/login-image.jpg') }}" alt="Login Image">
+          <img src="{{ asset('images/login-image.jpg') }}" alt="Login Image" class="image_left">
         </div>
 
         <div class="col-md-6 right">
@@ -38,6 +38,12 @@
           </div>
 
           <div class="input-box">
+            <div class="main_logo">
+              <a href="{{ route('login') }}">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo">
+              </a>
+            </div>
+
             <form action="{{ route('authenticate') }}" method="POST">
               @csrf
               <header>Login</header>
@@ -62,9 +68,6 @@
             <div class="forgot-pass">
               <span><a href="{{ route('forgot-password') }}">Forgot password?</a></span>
             </div>
-            {{-- <div class="signin">
-              <span>Don't have an account? <a href="{{ route('register') }}">Sign Up</a></span>
-            </div> --}}
           </div>
         </div>
       </div>
