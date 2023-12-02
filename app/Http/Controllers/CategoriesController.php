@@ -90,11 +90,17 @@ class CategoriesController extends Controller
             DB::beginTransaction();
 
             $category = Category::findOrFail($id);
+
+            if ($category->products()->exists()) {
+                return back()->withErrors('Can\'t delete because there are products associated with this category!');
+            }
+
             $category->delete();
 
             DB::commit();
             toast("Category Deleted Successfully", 'warning');
-            return response()->redirectToRoute('product-categories.index')->with('success', 'Categories deleted successfully');
+
+            return response()->redirectToRoute('product-categories.index');
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;

@@ -104,7 +104,7 @@ Route::resource('suppliers', SupplierController::class)->names([
 ])->middleware('auth');
 
 // Reports Route
-Route::get('/profit-loss-report', [ReportController::class, 'profitLossReport'])->name('profit-loss-report')->middleware('auth');
+Route::get('/report', [ReportController::class, 'indexReport'])->name('report')->middleware('auth');
 
 // Users Route
 Route::resource('users', UserController::class)->except('show')->names([

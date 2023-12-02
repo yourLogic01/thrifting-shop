@@ -16,6 +16,16 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
+    public function setProductCostAttribute($value)
+    {
+        $this->attributes['product_cost'] = ($value * 100);
+    }
+
+    public function getProductCostAttribute($value)
+    {
+        return ($value / 100);
+    }
+
     public function setProductPriceAttribute($value)
     {
         $this->attributes['product_price'] = ($value * 100);

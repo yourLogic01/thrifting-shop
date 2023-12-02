@@ -47,7 +47,7 @@
             <i class="bi bi-receipt font-2xl"></i>
           </div>
           <div>
-            <div class="text-value text-primary">{{ $sales_amount }}</div>
+            <div class="text-value text-primary">{{ format_currency($sales_amount) }}</div>
             <div class="text-uppercase font-weight-bold small ">{{ $total_sales }} Sales</div>
           </div>
         </div>
@@ -61,7 +61,7 @@
             <i class="bi bi-bag font-2xl"></i>
           </div>
           <div>
-            <div class="text-value text-primary">{{ $purchases_amount }}</div>
+            <div class="text-value text-primary">{{ format_currency($purchases_amount) }}</div>
             <div class="text-uppercase font-weight-bold small">{{ $total_purchases }} Purchases</div>
           </div>
         </div>
@@ -75,7 +75,7 @@
             <i class="bi bi-trophy font-2xl"></i>
           </div>
           <div>
-            <div class="text-value text-primary">{{ $profit_amount }}</div>
+            <div class="text-value text-primary">{{ format_currency($profit_amount) }}</div>
             <div class="text-uppercase font-weight-bold small">Profit</div>
           </div>
         </div>
@@ -89,8 +89,8 @@
             <i class="bi bi-cash-stack font-2xl"></i>
           </div>
           <div>
-            <div class="text-value text-primary">{{ $payments_received_amount }}</div>
-            <div class="text-uppercase font-weight-bold small">Payments Received</div>
+            <div class="text-value text-primary">{{ $total_transaction }}</div>
+            <div class="text-uppercase font-weight-bold small">Completed Transaction</div>
           </div>
         </div>
       </div>

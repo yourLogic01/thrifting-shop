@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
-    public function profitLossReport()
+    public function indexReport()
     {
-        return view('reports.profit-loss.index');
+        return view('reports.index');
     }
 }

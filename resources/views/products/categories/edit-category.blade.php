@@ -15,8 +15,8 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-md-7">
-        {{-- TODO:Integrate with sweetalerts --}}
-        {{-- @include('utils.alerts') --}}
+        @include('utils.alerts')
+
         <div class="card">
           <div class="card-body">
             <form action="{{ route('product-categories.update', $category->id) }}" method="POST">

@@ -95,9 +95,9 @@
 </li>
 
 {{-- Reports sidebar navigation --}}
-<li class="c-sidebar-nav-item bg_sidebar_report {{ request()->routeIs('profit-loss-report') ? 'c-active' : '' }}">
-  <a class="c-sidebar-nav-link" href="{{ route('profit-loss-report') }}">
-    <i class="c-sidebar-nav-icon bi bi-graph-up" style="line-height: 1;"></i> Profit / Loss Report
+<li class="c-sidebar-nav-item bg_sidebar_report {{ request()->routeIs('report') ? 'c-active' : '' }}">
+  <a class="c-sidebar-nav-link" href="{{ route('report') }}">
+    <i class="c-sidebar-nav-icon bi bi-graph-up" style="line-height: 1;"></i> Report
   </a>
 </li>
 

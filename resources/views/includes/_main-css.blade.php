@@ -132,4 +132,8 @@
   .bg_green {
     background: #22c55e !important;
   }
+
+  .text_primary {
+    color: rgba(234, 88, 12, 0.9) !important;
+  }
 </style>

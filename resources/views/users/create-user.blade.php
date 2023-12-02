@@ -15,12 +15,10 @@
     <form action="{{ route('user.store') }}" method="POST">
       @csrf
       <div class="row">
-        <div class="col-lg-12">
-          {{-- TODO:Integrate with sweetalert --}}
-          {{-- @include('utils.alerts') --}}
-        </div>
         <div class="col-md-12">
           <div class="card">
+            @include('utils.alerts')
+
             <div class="card-body">
               <div class="form-row">
                 <div class="col-lg-6">

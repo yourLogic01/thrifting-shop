@@ -13,9 +13,9 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        {{-- TODO:Integrate with sweetalert --}}
-        {{-- @include('utils.alerts') --}}
-        <h3>Hello, <span class="text-primary">{{ auth()->user()->name }}</span></h3>
+        @include('utils.alerts')
+
+        <h3>Hello, <span class="text_primary">{{ auth()->user()->name }}</span></h3>
         <p class="font-italic">Change your profile information from here.</p>
       </div>
       <div class="col-lg-12">
