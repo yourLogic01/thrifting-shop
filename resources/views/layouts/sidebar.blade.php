@@ -3,8 +3,8 @@
   class="c-sidebar bg_sidebar_wrapper c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show {{ request()->routeIs('sale.create*') ? 'c-sidebar-minimized' : '' }}"
   id="sidebar">
   <div class="c-sidebar-brand d-md-down-none bg_sidebar_header p-2">
-    <a href="{{ route('home') }}">
-      <img class="c-sidebar-brand-full" src="{{ asset('images/logo.png') }}" alt="Logo" width="75">
+    <a href="{{ route('home') }}" class="my-1">
+      <img class="c-sidebar-brand-full" src="{{ asset('images/logo-full.png') }}" alt="Logo" height="43">
 
       <img class="c-sidebar-brand-minimized" src="{{ asset('images/logo.png') }}" alt="Logo" width="40">
     </a>
