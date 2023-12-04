@@ -54,7 +54,7 @@ i {
     width: 330px;
     box-sizing: border-box;
 }
-img {
+.image_left {
     width: 100%;
     height: 550px;
     position: absolute;
@@ -66,7 +66,7 @@ img {
     font-weight: 700;
     font-size: 24px;
     text-align: center;
-    margin-bottom: 45px;
+    margin-bottom: 40px;
 }
 .input-field {
     display: flex;
@@ -147,14 +147,25 @@ span a:hover {
     padding-right: 20px;
 }
 .forgot-pass {
-    text-align: end;
-    padding: 10px 0;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 10px 10px;
 }
 .forgot-pass span {
     font-size: 14px;
 }
 .forgot-pass a {
     font-weight: 500;
+}
+.main_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+.main_logo img {
+    width: 125px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -172,7 +183,7 @@ span a:hover {
     .side-image {
         display: none;
     }
-    img {
+    .image_left {
         display: none;
     }
     .text {
@@ -193,6 +204,12 @@ span a:hover {
     }
     span {
         font-size: 15px;
+    }
+    .forgot-pass {
+        padding: 10px 20px;
+    }
+    .main_logo img {
+        width: 100px;
     }
 }
 
@@ -215,5 +232,8 @@ span a:hover {
     }
     span {
         font-size: 14px;
+    }
+    .forgot-pass {
+        padding: 10px 60px;
     }
 }
