@@ -4,7 +4,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Reset Password - Thrifting Shop</title>
+  <title>Reset Password - Captain Thrift</title>
   <style>
     @media only screen and (max-width: 620px) {
       table.body h1 {
@@ -186,7 +186,7 @@
                       </ul>
                       <p
                         style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">
-                        Thanks for using our services, Thrifting Shop Support Team</p>
+                        Thanks for using our services, Captain Thrift Support Team</p>
                     </td>
                   </tr>
                 </table>

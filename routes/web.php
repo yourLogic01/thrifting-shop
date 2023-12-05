@@ -80,6 +80,7 @@ Route::resource('purchases', PurchaseController::class)->names([
   'update' => 'purchases.update',
   'destroy' => 'purchases.destroy',
 ])->middleware('auth');
+Route::get('purchases/pdf/{id}', [PurchaseController::class, 'view_pdf'])->name('purchases.pdf');
 
 // Sales Route
 Route::resource('sales', SaleController::class)->names([
@@ -91,6 +92,7 @@ Route::resource('sales', SaleController::class)->names([
   'update' => 'sale.update',
   'destroy' => 'sale.destroy',
 ])->middleware('auth');
+Route::get('sales/pdf/{id}', [SaleController::class, 'view_pdf'])->name('sales.pdf');
 
 // Suppliers Route
 Route::resource('suppliers', SupplierController::class)->names([

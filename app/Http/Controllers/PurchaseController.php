@@ -7,10 +7,11 @@ use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Models\PurchaseDetail;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\DataTables\PurchaseDataTable;
-use App\Http\Requests\StorePurchaseRequest;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Http\Requests\StorePurchaseRequest;
 
 class PurchaseController extends Controller
 {
@@ -208,5 +209,18 @@ class PurchaseController extends Controller
         $purchase->delete();
         toast("Purchase Deleted Successfully", 'warning');
         return redirect()->route('purchases.index');
+    }
+
+    public function view_pdf($id)
+    {
+        $purchase = Purchase::findOrFail($id);
+        $supplier = Supplier::findOrFail($purchase->supplier_id);
+
+        $pdf = Pdf::loadView('purchases.print', [
+            'purchase' => $purchase,
+            'supplier' => $supplier
+        ]);
+
+        return $pdf->stream('Purchase-' . $purchase->reference . '.pdf');
     }
 }

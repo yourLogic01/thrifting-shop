@@ -7,9 +7,10 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\SaleDetail;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\DataTables\SalesDataTable;
-use App\Http\Requests\StoreSaleRequest;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreSaleRequest;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class SaleController extends Controller
@@ -207,7 +208,20 @@ class SaleController extends Controller
     public function destroy(Sale $sale)
     {
         $sale->delete();
+
         toast("Sale Deleted Successfully", 'warning');
+
         return redirect()->route('sale.index');
+    }
+
+    public function view_pdf($id)
+    {
+        $sale = Sale::findOrFail($id);
+
+        $pdf = Pdf::loadView('sales.print', [
+            'sale' => $sale,
+        ]);
+
+        return $pdf->stream('Sale-' . $sale->reference . '.pdf');
     }
 }
