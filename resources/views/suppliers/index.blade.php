@@ -17,6 +17,8 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
+        @include('utils.alerts')
+
         <div class="card">
           <div class="card-body">
             <a href="{{ route('suppliers.create') }}" class="btn btn_color">

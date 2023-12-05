@@ -16,4 +16,9 @@ class Supplier extends Model
         // Add other fields as needed
     ];
     protected $table = 'suppliers';
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class, 'supplier_id', 'id');
+    }
 }
