@@ -1,31 +1,26 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('title', 'Sales Detail')
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ $sale->reference }} | Sale Detail</title>
+  <link rel="stylesheet" href="{{ public_path('bootstrap/bootstrap.min.css') }}">
+</head>
 
-@section('breadcrumb')
-  <ol class="breadcrumb border-0 m-0">
-    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('sale.index') }}">Sales</a></li>
-    <li class="breadcrumb-item active">Details</li>
-  </ol>
-@endsection
-
-@section('content')
+<body>
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
         <div class="card">
-          <div class="card-header d-flex flex-wrap align-items-center">
+          <div class="card-header d-flex flex-wrap align-items-center" style="margin-bottom: 15px;">
             <div>
               Reference: <strong>{{ $sale->reference }}</strong>
             </div>
-            <a target="_blank" class="btn btn-sm btn-success mfs-auto mfe-1 d-print-none"
-              href="{{ route('sales.pdf', $sale->id) }}">
-              <i class="bi bi-printer"></i> Print
-            </a>
           </div>
           <div class="card-body">
-            <div class="row mb-4">
+            <div class="row mb-4" style="margin-bottom: 15px;">
               <div class="col-sm-6 mb-3 mb-md-0">
                 <h5 class="mb-2 border-bottom pb-2">Company Info:</h5>
                 <div><strong>Captain Thrift</strong></div>
@@ -46,7 +41,7 @@
               </div>
             </div>
 
-            <div class="table-responsive-sm">
+            <div class="table-responsive-sm" style="margin: 20px 0;">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -61,7 +56,7 @@
                     <tr>
                       <td class="align-middle">
                         {{ $item->product_name }} <br>
-                        <span class="badge badge-success">
+                        <span class="badge badge-success" style="background: forestgreen;">
                           {{ $item->product_code }}
                         </span>
                       </td>
@@ -84,7 +79,8 @@
             </div>
 
             <div class="row">
-              <div class="col-lg-8 col-md-6 col-sm-6 d-flex flex-row justify-content-start p-4">
+              <div class="col-lg-8 col-md-6 col-sm-6 d-flex flex-row justify-content-start p-4"
+                style="margin-top: 15px;">
                 <div>
                   <h5>Note : </h5>
                 </div>
@@ -93,7 +89,7 @@
                 </div>
               </div>
 
-              <div class="col-lg-4 col-md-6 col-sm-6 ml-md-auto" style="overflow-x:auto;">
+              <div class="col-lg-4 col-md-6 col-sm-6 ml-md-auto" style="overflow-x:auto; margin-top: 15px;">
                 <table class="table">
                   <tbody>
                     <tr>
@@ -117,4 +113,6 @@
       </div>
     </div>
   </div>
-@endsection
+</body>
+
+</html>

@@ -19,13 +19,17 @@
             <div>
               Reference: <strong>{{ $purchase->reference }}</strong>
             </div>
+            <a target="_blank" class="btn btn-sm btn-success mfs-auto mfe-1 d-print-none"
+              href="{{ route('purchases.pdf', $purchase->id) }}">
+              <i class="bi bi-printer"></i> Print
+            </a>
           </div>
           <div class="card-body">
             <div class="row mb-4">
               <div class="col-sm-4 mb-3 mb-md-0">
                 <h5 class="mb-2 border-bottom pb-2">Company Info:</h5>
-                <div><strong>Thrifting Shop</strong></div>
-                <div>Email: thriftingshop99@gmail.com</div>
+                <div><strong>Captain Thrift</strong></div>
+                <div>Email: captainthrift99@gmail.com</div>
                 <div>Phone: 085717028487</div>
               </div>
 
