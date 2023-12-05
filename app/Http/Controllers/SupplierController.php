@@ -84,7 +84,13 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
+
+        if ($supplier->purchases()->exists()) {
+            return back()->withErrors('Can\'t delete because there are purchases associated with this supplier!');
+        }
+
         $supplier->delete();
+
         toast("Suplier Deleted Successfully", 'warning');
 
         return redirect()->route('suppliers.index')->with('success', 'Supplier deleted successfully.');
